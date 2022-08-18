@@ -17,8 +17,8 @@ namespace Modulo_Administracion
 
         public static bool snUsoDevExpress = false; //indico si uso devExpress para reporteria o no
 
-        //public const string ruta_guardar_factura_pdf = @"\\MAXI-PC\Compartida\FACTURAS DEL DIA\";
-        public const string ruta_guardar_factura_pdf = @"C:\Users\Martin\Desktop\";
+        public const string ruta_guardar_factura_pdf = @"\\MAXI-PC\Compartida\FACTURAS DEL DIA\";
+        //public const string ruta_guardar_factura_pdf = @"C:\Users\Martin\Desktop\";
         [STAThread]
 
 
