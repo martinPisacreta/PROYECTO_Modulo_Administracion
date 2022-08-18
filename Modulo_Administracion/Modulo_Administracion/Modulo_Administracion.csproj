@@ -458,6 +458,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Reporte\RDLC\Documentacion_ambos_reportes.docx" />
     <None Include="Reporte\RDLC\reporteFactura\dataSet.xsc">
       <DependentUpon>dataSet.xsd</DependentUpon>
     </None>
@@ -469,7 +470,6 @@
     <None Include="Reporte\RDLC\reporteFactura\dataSet.xss">
       <DependentUpon>dataSet.xsd</DependentUpon>
     </None>
-    <None Include="Reporte\RDLC\Documentacion.docx" />
     <None Include="Web References\WSAA\LoginCms.wsdl" />
     <None Include="Web References\WSAA\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
