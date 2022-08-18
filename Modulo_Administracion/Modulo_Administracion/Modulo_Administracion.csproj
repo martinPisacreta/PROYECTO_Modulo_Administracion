@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0D7FA16-7D65-436C-B921-F1E5021BB697}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Modulo_Administracion</RootNamespace>
+    <AssemblyName>Modulo_Administracion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gestion-de-carpetas.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.CodeParser.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Data.Desktop.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Data.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.DataAccess.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v20.1.Drawing, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Pdf.v20.1.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Printing.v20.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Utils.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.Xpo.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraEditors.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraGrid.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPdfViewer.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraPdfViewer.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraPrinting.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraReports.v20.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dllDevExpress\DevExpress.XtraReports.v20.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Syncfusion.Compression.Base, Version=20.2460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.2.0.43\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2460.0.43, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.2.0.43\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=20.2460.0.43, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.AspNet.20.2.0.43\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.6.0.1\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\articulo.cs" />
+    <Compile Include="Clases\articulo_historico.cs" />
+    <Compile Include="Clases\articulo_tmp_errores.cs" />
+    <Compile Include="Clases\cliente.cs" />
+    <Compile Include="Clases\cliente_cuenta_corriente.cs" />
+    <Compile Include="Clases\cliente_datos.cs" />
+    <Compile Include="Clases\cliente_dir.cs" />
+    <Compile Include="Clases\Custom\ttipo_factura_constantes.cs" />
+    <Compile Include="Clases\empresa.cs" />
+    <Compile Include="Clases\factura.cs" />
+    <Compile Include="Clases\factura_detalle.cs" />
+    <Compile Include="Clases\factura_detalle_log.cs" />
+    <Compile Include="Clases\factura_log.cs" />
+    <Compile Include="Clases\familia.cs" />
+    <Compile Include="Clases\log_tarea_programada.cs" />
+    <Compile Include="Clases\marca.cs" />
+    <Compile Include="Clases\Modulo_AdministracionContext.cs" />
+    <Compile Include="Clases\proveedor.cs" />
+    <Compile Include="Clases\proveedor_datos.cs" />
+    <Compile Include="Clases\proveedor_dir.cs" />
+    <Compile Include="Clases\tcalle.cs" />
+    <Compile Include="Clases\tmunicipio.cs" />
+    <Compile Include="Clases\tpais.cs" />
+    <Compile Include="Clases\tprovincia.cs" />
+    <Compile Include="Clases\ttipo_calle.cs" />
+    <Compile Include="Clases\ttipo_cliente.cs" />
+    <Compile Include="Clases\ttipo_condicion_factura.cs" />
+    <Compile Include="Clases\ttipo_condicion_iva.cs" />
+    <Compile Include="Clases\ttipo_condicion_pago.cs" />
+    <Compile Include="Clases\ttipo_dato.cs" />
+    <Compile Include="Clases\ttipo_dir.cs" />
+    <Compile Include="Clases\ttipo_factura.cs" />
+    <Compile Include="Clases\usuario.cs" />
+    <Compile Include="Clases\usuario_pedido.cs" />
+    <Compile Include="Clases\usuario_pedido_detalle.cs" />
+    <Compile Include="Clases\vendedor.cs" />
+    <Compile Include="Logica\Logica_Afip\AFIP_ELECTRONICA.cs" />
+    <Compile Include="Logica\Logica_Afip\CBD.cs" />
+    <Compile Include="Logica\Logica_Afip\CGLOBAL.cs" />
+    <Compile Include="Logica\Logica_Afip\DT.cs" />
+    <Compile Include="Logica\Logica_Afip\FACTURA_ELECTRONICA.cs" />
+    <Compile Include="Logica\Logica_Afip\TICKET.cs" />
+    <Compile Include="Logica\Logica_Articulo.cs" />
+    <Compile Include="Logica\Logica_Cliente.cs" />
+    <Compile Include="Logica\Logica_Cliente_Cuenta_Corriente.cs" />
+    <Compile Include="Logica\Logica_Cliente_Datos.cs" />
+    <Compile Include="Logica\Logica_Cliente_Direccion.cs" />
+    <Compile Include="Logica\Logica_Factura.cs" />
+    <Compile Include="Logica\Logica_Factura_Detalle.cs" />
+    <Compile Include="Logica\Logica_Familia.cs" />
+    <Compile Include="Logica\Logica_Funciones_Generales.cs" />
+    <Compile Include="Logica\Logica_Geografia.cs" />
+    <Compile Include="Logica\Logica_Marca.cs" />
+    <Compile Include="Logica\Logica_Proveedor.cs" />
+    <Compile Include="Logica\Logica_Proveedor_Datos.cs" />
+    <Compile Include="Logica\Logica_Proveedor_Direccion.cs" />
+    <Compile Include="Logica\Logica_Tipo_Factura.cs" />
+    <Compile Include="Logica\Logica_Vendedor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\RDLC\reporteClienteCuentaCorriente\frmReporteClienteCuentaCorriente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\RDLC\reporteClienteCuentaCorriente\frmReporteClienteCuentaCorriente.designer.cs">
+      <DependentUpon>frmReporteClienteCuentaCorriente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\RDLC\reporteFactura\dataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\RDLC\reporteFactura\frmReporteFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\RDLC\reporteFactura\frmReporteFactura.Designer.cs">
+      <DependentUpon>frmReporteFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\reporte_cliente_cuenta_corriente.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\reporte_cliente_cuenta_corriente.Designer.cs">
+      <DependentUpon>reporte_cliente_cuenta_corriente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\reporte_factura.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\reporte_factura.designer.cs">
+      <DependentUpon>reporte_factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Vista\frmArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmArticulo.Designer.cs">
+      <DependentUpon>frmArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmBuscar.Designer.cs">
+      <DependentUpon>frmBuscar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmCliente_Cuenta_Corriente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmCliente_Cuenta_Corriente.Designer.cs">
+      <DependentUpon>frmCliente_Cuenta_Corriente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmDatos.Designer.cs">
+      <DependentUpon>frmDatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmDireccion.Designer.cs">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmEspere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmEspere.Designer.cs">
+      <DependentUpon>frmEspere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmFactura.Designer.cs">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmFacturaAFIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmFacturaAFIP.Designer.cs">
+      <DependentUpon>frmFacturaAFIP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmFacturaGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmFacturaGestion.Designer.cs">
+      <DependentUpon>frmFacturaGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmFamilia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmFamilia.Designer.cs">
+      <DependentUpon>frmFamilia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmImportarExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmImportarExcel.Designer.cs">
+      <DependentUpon>frmImportarExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmImportarExcelProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmImportarExcelProveedor.Designer.cs">
+      <DependentUpon>frmImportarExcelProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmMain.designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmMarca.Designer.cs">
+      <DependentUpon>frmMarca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmPassword.Designer.cs">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmProveedor.Designer.cs">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\frmVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\frmVendedor.Designer.cs">
+      <DependentUpon>frmVendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSAA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSFEHOMO\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSPSA4\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reporte\RDLC\reporteClienteCuentaCorriente\frmReporteClienteCuentaCorriente.resx">
+      <DependentUpon>frmReporteClienteCuentaCorriente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\RDLC\reporteClienteCuentaCorriente\reporteClienteCuentaCorriente.rdlc" />
+    <EmbeddedResource Include="Reporte\RDLC\reporteFactura\frmReporteFactura.resx">
+      <DependentUpon>frmReporteFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\RDLC\reporteFactura\reporteFactura.rdlc" />
+    <EmbeddedResource Include="Reporte\reporte_cliente_cuenta_corriente.resx">
+      <DependentUpon>reporte_cliente_cuenta_corriente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\reporte_factura.resx">
+      <DependentUpon>reporte_factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmArticulo.resx">
+      <DependentUpon>frmArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmBuscar.resx">
+      <DependentUpon>frmBuscar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmCliente_Cuenta_Corriente.resx">
+      <DependentUpon>frmCliente_Cuenta_Corriente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmDatos.resx">
+      <DependentUpon>frmDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmDireccion.resx">
+      <DependentUpon>frmDireccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmEspere.resx">
+      <DependentUpon>frmEspere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmFacturaAFIP.resx">
+      <DependentUpon>frmFacturaAFIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmFacturaGestion.resx">
+      <DependentUpon>frmFacturaGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmFamilia.resx">
+      <DependentUpon>frmFamilia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmImportarExcel.resx">
+      <DependentUpon>frmImportarExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmImportarExcelProveedor.resx">
+      <DependentUpon>frmImportarExcelProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmMarca.resx">
+      <DependentUpon>frmMarca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmPassword.resx">
+      <DependentUpon>frmPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmProveedor.resx">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\frmVendedor.resx">
+      <DependentUpon>frmVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Documento\templateImportarListaProveedor.xlsx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reporte\RDLC\reporteFactura\dataSet.xsc">
+      <DependentUpon>dataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\RDLC\reporteFactura\dataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reporte\RDLC\reporteFactura\dataSet.xss">
+      <DependentUpon>dataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reporte\RDLC\Documentacion.docx" />
+    <None Include="Web References\WSAA\LoginCms.wsdl" />
+    <None Include="Web References\WSAA\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSFEHOMO\CbteTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\ConceptoTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\DocTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\DummyResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECAEAGetResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECAEAResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECAEASinMovConsResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECAEASinMovResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECAEResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECompConsultaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FECotizacionResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FEPaisResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FEPtoVentaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FERecuperaLastCbteResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FERegXReqResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\FETributoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\IvaTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\MonedaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\OpcionalTipoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSFEHOMO\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSFEHOMO\service.wsdl" />
+    <None Include="Web References\WSPSA4\dummyReturn.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSPSA4\personaReturn.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSPSA4\PersonaServiceA4.wsdl" />
+    <None Include="Web References\WSPSA4\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\dummyReturn.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\personaListReturn.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\personaReturn.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\PersonaServiceA5.wsdl" />
+    <None Include="Web References\WS_SR_CONSTANCIA_INSCRIPCION\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gestion-de-carpetas.ico" />
+    <Content Include="Reporte\RDLC\reporteFactura\border-radius.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\GetPersonaTemplate.xml" />
+    <Content Include="templates\LoginTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA4%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSPSA4\</RelPath>
+      <UpdateFromURL>https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA4%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Modulo_Administracion_WSPSA4_PersonaServiceA4</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WS_SR_CONSTANCIA_INSCRIPCION\</RelPath>
+      <UpdateFromURL>https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Modulo_Administracion_WS_SR_CONSTANCIA_INSCRIPCION_PersonaServiceA5</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://wsaa.afip.gov.ar/ws/services/LoginCms%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSAA\</RelPath>
+      <UpdateFromURL>https://wsaa.afip.gov.ar/ws/services/LoginCms%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Modulo_Administracion_WSAA_LoginCMSService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://wswhomo.afip.gov.ar/wsfev1/service.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSFEHOMO\</RelPath>
+      <UpdateFromURL>https://wswhomo.afip.gov.ar/wsfev1/service.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Modulo_Administracion_WSFEHOMO_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
