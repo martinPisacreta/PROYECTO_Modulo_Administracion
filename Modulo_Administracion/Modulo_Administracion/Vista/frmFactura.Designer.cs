@@ -116,7 +116,6 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelBusquedaArticulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelSuperiorBusquedaArticulo)).BeginInit();
             this.panelSuperiorBusquedaArticulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusquedaArticulo)).BeginInit();
             this.SuspendLayout();
@@ -973,7 +972,6 @@
             // 
             this.panelBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelBusquedaArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelBusquedaArticulo.Controls.Add(this.panelSuperiorBusquedaArticulo);
             this.panelBusquedaArticulo.Controls.Add(this.dgvBusquedaArticulo);
             this.panelBusquedaArticulo.Location = new System.Drawing.Point(12, 13);
@@ -988,10 +986,10 @@
             this.panelSuperiorBusquedaArticulo.Controls.Add(this.btnBusquedaArticulo);
             this.panelSuperiorBusquedaArticulo.Controls.Add(this.btnLimpiarBusquedaArticulo);
             this.panelSuperiorBusquedaArticulo.Controls.Add(this.txtBusquedaArticulo);
-            this.panelSuperiorBusquedaArticulo.Location = new System.Drawing.Point(17, 3);
+            this.panelSuperiorBusquedaArticulo.Location = new System.Drawing.Point(15, 4);
             this.panelSuperiorBusquedaArticulo.Name = "panelSuperiorBusquedaArticulo";
             this.panelSuperiorBusquedaArticulo.Size = new System.Drawing.Size(1491, 47);
-            this.panelSuperiorBusquedaArticulo.TabIndex = 2;
+            this.panelSuperiorBusquedaArticulo.TabIndex = 6;
             // 
             // btnBusquedaArticulo
             // 
@@ -1035,7 +1033,7 @@
             this.txtBusquedaArticulo.Location = new System.Drawing.Point(721, 10);
             this.txtBusquedaArticulo.MaxLength = 50;
             this.txtBusquedaArticulo.Name = "txtBusquedaArticulo";
-            this.txtBusquedaArticulo.Size = new System.Drawing.Size(532, 23);
+            this.txtBusquedaArticulo.Size = new System.Drawing.Size(532, 22);
             this.txtBusquedaArticulo.TabIndex = 0;
             // 
             // dgvBusquedaArticulo
@@ -1048,14 +1046,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBusquedaArticulo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBusquedaArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBusquedaArticulo.Location = new System.Drawing.Point(17, 56);
+            this.dgvBusquedaArticulo.Location = new System.Drawing.Point(15, 57);
             this.dgvBusquedaArticulo.MultiSelect = false;
             this.dgvBusquedaArticulo.Name = "dgvBusquedaArticulo";
             this.dgvBusquedaArticulo.ReadOnly = true;
             this.dgvBusquedaArticulo.RowHeadersWidth = 51;
             this.dgvBusquedaArticulo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBusquedaArticulo.Size = new System.Drawing.Size(1491, 218);
-            this.dgvBusquedaArticulo.TabIndex = 0;
+            this.dgvBusquedaArticulo.TabIndex = 5;
             this.dgvBusquedaArticulo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBusquedaArticulo_CellDoubleClick);
             // 
             // frmFactura
@@ -1092,7 +1090,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panelBusquedaArticulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelSuperiorBusquedaArticulo)).EndInit();
             this.panelSuperiorBusquedaArticulo.ResumeLayout(false);
             this.panelSuperiorBusquedaArticulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusquedaArticulo)).EndInit();
@@ -1115,7 +1112,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Panel panelBusquedaArticulo;
         private System.Windows.Forms.Panel panelPagoMayor30Dias;
         private System.Windows.Forms.TextBox txtPagoMayor30DiasPorcentaje;
         private System.Windows.Forms.Label lblImportePagoMayor30Dias;
@@ -1173,10 +1169,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id_articulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id_factura_detalle;
         private System.Windows.Forms.ComboBox cbAccionMenu;
-        private System.Windows.Forms.DataGridView dgvBusquedaArticulo;
+        private System.Windows.Forms.Panel panelBusquedaArticulo;
         private System.Windows.Forms.Panel panelSuperiorBusquedaArticulo;
-        private System.Windows.Forms.TextBox txtBusquedaArticulo;
         private System.Windows.Forms.Button btnBusquedaArticulo;
         private System.Windows.Forms.Button btnLimpiarBusquedaArticulo;
+        private System.Windows.Forms.TextBox txtBusquedaArticulo;
+        private System.Windows.Forms.DataGridView dgvBusquedaArticulo;
     }
 }
