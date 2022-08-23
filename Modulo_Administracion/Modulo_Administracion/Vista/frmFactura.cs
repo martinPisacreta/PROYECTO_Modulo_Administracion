@@ -1,8 +1,4 @@
-﻿using DevExpress.Utils;
-using DevExpress.Utils.Menu;
-using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
-using Modulo_Administracion.Clases;
+﻿using Modulo_Administracion.Clases;
 using Modulo_Administracion.Clases.Custom;
 using Modulo_Administracion.Logica;
 using System;
@@ -42,12 +38,14 @@ namespace Modulo_Administracion.Vista
         string opcion_1_dropDownButton = "Grabar";
         string opcion_2_dropDownButton = "Grabar y generar PDF";
         string opcion_3_dropDownButton = "Grabar , generar PDF e imprimir";
+
+     
+
         int nro_redondeo = 2;
 
         public new Form ParentForm { get; set; }
 
-
-
+   
         public frmFactura(factura _factura)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -58,16 +56,12 @@ namespace Modulo_Administracion.Vista
                 factura = _factura;
 
 
-                gridControl1.DataSource = Logica_Articulo.buscar_articulos_activos().Tables[0]; //cargo en gridControl1
+         
 
-                gridView3.Columns["precio_lista"].Visible = false;
-                gridView3.Columns["coeficiente"].Visible = false;
-                gridView3.Columns["precio_final"].Visible = false;
-                gridView3.Columns["id_tabla_familia"].Visible = false;
-                gridView3.Columns["sn_oferta"].Visible = false;
-                gridView3.Columns["path_img"].Visible = false;
-                gridView3.Columns["id_articulo"].Visible = false;
-                gridView3.Columns["id_orden"].Visible = false;
+            
+
+
+                
 
                 dgvFactura.Rows.Add(cantidad_filas_a_dataGridView);    //genero 50 lineas al dataGridView
 
@@ -129,14 +123,9 @@ namespace Modulo_Administracion.Vista
                     //panel2.Enabled = false;
                 }
 
-                DXPopupMenu popupMenu = new DXPopupMenu();
-                popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_1_dropDownButton });
-                popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_2_dropDownButton });
-                popupMenu.Items.Add(new DXMenuCheckItem() { Caption = opcion_3_dropDownButton });
-                btnDropDownButton.DropDownControl = popupMenu;
-
-                foreach (DXMenuItem item in popupMenu.Items)
-                    item.Click += itemDropDownButton_Click;
+                cbAccionMenu.Items.Add(opcion_1_dropDownButton);
+                cbAccionMenu.Items.Add(opcion_2_dropDownButton);
+                cbAccionMenu.Items.Add(opcion_3_dropDownButton);
 
 
                 String pkInstalledPrinters;
@@ -394,7 +383,7 @@ namespace Modulo_Administracion.Vista
                 if (factura.sn_emitida == -1) //si esta emitida la factura , ingreso aca 
                 {
                     dgvFactura.ReadOnly = true;
-                    btnDropDownButton.Enabled = false;
+                    cbAccionMenu.Enabled = false;
                     btnEliminar.Enabled = false;
                     txtObservacion.Enabled = false;
                     panelPorcentaje.Enabled = false;
@@ -412,7 +401,7 @@ namespace Modulo_Administracion.Vista
                 else //si todavia no esta impresa la factura , ingreso aca 
                 {
                     dgvFactura.ReadOnly = false;
-                    btnDropDownButton.Enabled = true;
+                    cbAccionMenu.Enabled = true;
                     btnEliminar.Enabled = true;
                     txtObservacion.Enabled = true;
                     panelPorcentaje.Enabled = true;
@@ -898,7 +887,7 @@ namespace Modulo_Administracion.Vista
             {
                 Cursor.Current = Cursors.Default;
                 form.Hide();
-
+                cbAccionMenu.SelectedIndex = -1;
                 if (cierro_el_modulo == true)
                 {
                     MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1616,91 +1605,89 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-        private void gridView3_DoubleClick(object sender, EventArgs e)
+        private void dgvBusquedaArticulo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (factura.sn_emitida == 0) //si todavia no esta emitida la factura , ingreso aca 
+                if (dgvBusquedaArticulo.Rows.Count > 0)
                 {
-                    DXMouseEventArgs ea = e as DXMouseEventArgs;
-                    GridView view = sender as GridView;
-                    GridHitInfo info = view.CalcHitInfo(ea.Location);
-
-                    decimal ganancia = 0;
-                    decimal precio_lista_x_coeficiente = 0.00M;
-                    decimal precio = 0.00M;
-                    decimal importe = 0.00M;
-                    decimal iva_aumento = 10.5M;
-
-                    if (info.InRow || info.InRowCell)
+                    if(e.RowIndex >= 0)
                     {
-
-                        int _ultima_fila_con_datos = ultima_fila_con_datos(dgvFactura);
-                        int fila_a_insertar_datos = _ultima_fila_con_datos + 1;
-                        if (fila_a_insertar_datos > -1)
+                        if (factura.sn_emitida == 0) //si todavia no esta emitida la factura , ingreso aca 
                         {
 
-                            int[] selectedRows = gridView3.GetSelectedRows();
+
+                            decimal ganancia = 0;
+                            decimal precio_lista_x_coeficiente = 0.00M;
+                            decimal precio = 0.00M;
+                            decimal importe = 0.00M;
+                            decimal iva_aumento = 10.5M;
 
 
 
-
-
-
-
-                            int cantidad = 1;
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_cantidad"].Value = cantidad;
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_marca"].Value = gridView3.GetRowCellValue(selectedRows[0], "codigo_articulo_marca").ToString();
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_codigo"].Value = gridView3.GetRowCellValue(selectedRows[0], "codigo_articulo");
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_descripcion"].Value = gridView3.GetRowCellValue(selectedRows[0], "descripcion_articulo");
-
-                            precio_lista_x_coeficiente = Convert.ToDecimal(gridView3.GetRowCellValue(selectedRows[0], "precio_final")); //DESDE EL STORE ESTO ES PRECIO_LISTA * COEFICIENTE
-                            precio_lista_x_coeficiente = Math.Round(precio_lista_x_coeficiente, nro_redondeo, MidpointRounding.AwayFromZero);
-
-                            ganancia = (precio_lista_x_coeficiente * iva_aumento) / 100;
-                            ganancia = Math.Round(ganancia, nro_redondeo, MidpointRounding.AwayFromZero);
-
-                            precio = (precio_lista_x_coeficiente + ganancia);
-                            precio = Math.Round(precio, nro_redondeo, MidpointRounding.AwayFromZero);
-
-                            importe = (precio * cantidad);
-                            importe = Math.Round(importe, nro_redondeo, MidpointRounding.AwayFromZero);
-
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_precio"].Value = precio == 0 ? "" : precio.ToString("N2");
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_importe"].Value = importe == 0 ? "" : importe.ToString("N2");
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_precio_lista_x_coeficiente"].Value = precio_lista_x_coeficiente == 0 ? "" : precio_lista_x_coeficiente.ToString("N2");
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_iva_aumento"].Value = iva_aumento.ToString("N2");
-                            dgvFactura.Rows[fila_a_insertar_datos].Cells["col_id_articulo"].Value = gridView3.GetRowCellValue(selectedRows[0], "id_articulo").ToString();
-
-
-
-                            lblImporteTotal.Text = importe_total(dgvFactura).ToString("N2");
-                            calcular_lblImportePagoMayor30Dias();
-                            calcular_lblImportePagoMenor7Dias();
-                            calcular_lblImportePagoMenor30Dias();
-                            lblTotal.Text = "Total : " + calcular_total_items_grilla(dgvFactura).ToString();
-
-                            //me fijo si "marca" - "codigo" ya existe en la grilla , si es asi , aviso
-                            string marca = dgvFactura.Rows[fila_a_insertar_datos].Cells["col_marca"].Value.ToString();
-                            string codigo = dgvFactura.Rows[fila_a_insertar_datos].Cells["col_codigo"].Value.ToString();
-
-                            if (cantidad_de_veces_que_aparece_articulo_en_grilla(marca, codigo) > 1)
+                            int _ultima_fila_con_datos = ultima_fila_con_datos(dgvFactura);
+                            int fila_a_insertar_datos = _ultima_fila_con_datos + 1;
+                            if (fila_a_insertar_datos > -1)
                             {
-                                MessageBox.Show("El articulo " + marca + " - " + codigo + " ya existe en esta factura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            //hasta aca 
-                        }
 
+
+
+
+
+                                int cantidad = 1;
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_cantidad"].Value = cantidad;
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_marca"].Value = dgvBusquedaArticulo.Rows[e.RowIndex].Cells["codigo_articulo_marca"].Value.ToString();
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_codigo"].Value = dgvBusquedaArticulo.Rows[e.RowIndex].Cells["codigo_articulo"].Value.ToString();
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_descripcion"].Value = dgvBusquedaArticulo.Rows[e.RowIndex].Cells["descripcion_articulo"].Value.ToString();
+
+                                precio_lista_x_coeficiente = Convert.ToDecimal(dgvBusquedaArticulo.Rows[e.RowIndex].Cells["precio_final"].Value.ToString()); //DESDE EL STORE ESTO ES PRECIO_LISTA * COEFICIENTE
+                                precio_lista_x_coeficiente = Math.Round(precio_lista_x_coeficiente, nro_redondeo, MidpointRounding.AwayFromZero);
+
+                                ganancia = (precio_lista_x_coeficiente * iva_aumento) / 100;
+                                ganancia = Math.Round(ganancia, nro_redondeo, MidpointRounding.AwayFromZero);
+
+                                precio = (precio_lista_x_coeficiente + ganancia);
+                                precio = Math.Round(precio, nro_redondeo, MidpointRounding.AwayFromZero);
+
+                                importe = (precio * cantidad);
+                                importe = Math.Round(importe, nro_redondeo, MidpointRounding.AwayFromZero);
+
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_precio"].Value = precio == 0 ? "" : precio.ToString("N2");
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_importe"].Value = importe == 0 ? "" : importe.ToString("N2");
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_precio_lista_x_coeficiente"].Value = precio_lista_x_coeficiente == 0 ? "" : precio_lista_x_coeficiente.ToString("N2");
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_iva_aumento"].Value = iva_aumento.ToString("N2");
+                                dgvFactura.Rows[fila_a_insertar_datos].Cells["col_id_articulo"].Value = dgvBusquedaArticulo.Rows[e.RowIndex].Cells["id_articulo"].Value.ToString();
+
+
+
+                                lblImporteTotal.Text = importe_total(dgvFactura).ToString("N2");
+                                calcular_lblImportePagoMayor30Dias();
+                                calcular_lblImportePagoMenor7Dias();
+                                calcular_lblImportePagoMenor30Dias();
+                                lblTotal.Text = "Total : " + calcular_total_items_grilla(dgvFactura).ToString();
+
+                                //me fijo si "marca" - "codigo" ya existe en la grilla , si es asi , aviso
+                                string marca = dgvFactura.Rows[fila_a_insertar_datos].Cells["col_marca"].Value.ToString();
+                                string codigo = dgvFactura.Rows[fila_a_insertar_datos].Cells["col_codigo"].Value.ToString();
+
+                                if (cantidad_de_veces_que_aparece_articulo_en_grilla(marca, codigo) > 1)
+                                {
+                                    MessageBox.Show("El articulo " + marca + " - " + codigo + " ya existe en esta factura", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                                //hasta aca 
+                            }
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 Cursor.Current = Cursors.Default;
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
 
 
 
@@ -2072,38 +2059,9 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-        private void itemDropDownButton_Click(object sender, EventArgs e)
-        {
+    
 
-            try
-            {
 
-                if (((DXMenuItem)sender).Caption == opcion_1_dropDownButton)
-                {
-                    grabar(1);
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_2_dropDownButton)
-                {
-                    grabar(2);
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_3_dropDownButton)
-                {
-                    grabar(3);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void btnGrabar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -2341,6 +2299,125 @@ namespace Modulo_Administracion.Vista
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cbAccionMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string selectedValue = cbAccionMenu.Text; //item index
+                if (selectedValue == opcion_1_dropDownButton)
+                {
+                    grabar(1);
+                }
+                else if (selectedValue == opcion_2_dropDownButton)
+                {
+                    grabar(2);
+                }
+                else if (selectedValue == opcion_3_dropDownButton)
+                {
+                    grabar(3);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        //--------------------------------------------------------------- FUNCIONES NUEVAS --------------------------------------------------------------------------------------
+
+        private void cargar_dgv()
+        {
+            frmEspere form = new frmEspere();
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                form.Show();
+
+                //VERIFICO QUE HAYA ALGO ESCRITO EN txtBusquedaArticulo
+                if (txtBusquedaArticulo.Text == "")
+                {
+                    txtBusquedaArticulo.Focus();
+                    throw new Exception("Debe escribir un filtro de busqueda");
+
+                }
+
+              
+                DataSet ds = Logica_Articulo.buscar_articulos_activos(txtBusquedaArticulo.Text);
+
+                if(ds.Tables[1].Rows.Count == 0)
+                {
+                    dgvBusquedaArticulo.DataSource = null;
+                    throw new Exception("No hay registros con los filtros solicitados");
+                }
+
+                int recordCount = 0;
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    recordCount = Convert.ToInt32(row[0].ToString());
+
+                }
+                dgvBusquedaArticulo.DataSource = ds.Tables[1]; //cargo en dgvBusquedaArticulo
+           
+                //OCULTO COLUMNAS DE dgvBusquedaArticulo
+                dgvBusquedaArticulo.Columns["precio_lista"].Visible = false;
+                dgvBusquedaArticulo.Columns["coeficiente"].Visible = false;
+                dgvBusquedaArticulo.Columns["precio_final"].Visible = false;
+                dgvBusquedaArticulo.Columns["id_tabla_familia"].Visible = false;
+                dgvBusquedaArticulo.Columns["sn_oferta"].Visible = false;
+                dgvBusquedaArticulo.Columns["path_img"].Visible = false;
+                dgvBusquedaArticulo.Columns["id_articulo"].Visible = false;
+                dgvBusquedaArticulo.Columns["id_orden"].Visible = false;
+
+               
+
+                form.Hide();
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                Cursor.Current = Cursors.Default;
+                form.Hide();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        private void btnLimpiarBusquedaArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBusquedaArticulo.Text = "";
+                dgvBusquedaArticulo.DataSource = null;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBusquedaArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cargar_dgv();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
     }
 }

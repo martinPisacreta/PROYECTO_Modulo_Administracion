@@ -238,43 +238,6 @@ namespace Modulo_Administracion.Logica
             ds.Tables.Add(dt);
             return ds;
 
-
-            //using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Modulo_AdministracionContext"].ConnectionString))
-            //{
-            //    connection.Open();
-            //    using (SqlTransaction sqlTransaction = connection.BeginTransaction())
-            //    {
-
-            //        try
-            //        {
-
-            //            DataSet ds = new DataSet();
-
-            //            //store
-            //            SqlCommand command = new SqlCommand("articulo_buscar_por_codigoArticuloMarca_codigoArticulo", connection, sqlTransaction);
-
-            //            //parametros
-            //            command.Parameters.AddWithValue("@codigo_articulo_marca", codigo_articulo_marca);
-            //            command.Parameters.AddWithValue("@codigo_articulo", codigo_articulo);
-
-            //            //tiempo y tipo
-            //            command.CommandTimeout = 0;
-            //            command.CommandType = CommandType.StoredProcedure;
-
-            //            SqlDataAdapter adapter = new SqlDataAdapter();
-            //            adapter.SelectCommand = command;
-            //            adapter.Fill(ds);
-            //            sqlTransaction.Commit();
-            //            return ds;
-
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            sqlTransaction.Rollback();
-            //            throw ex;
-            //        }
-            //    }
-            //}
         }
 
         public static bool dar_de_baja_articulos(int id_tabla_familia, Modulo_AdministracionContext db) //doy de baja los articulos de una familia
@@ -363,49 +326,80 @@ namespace Modulo_Administracion.Logica
         }
 
 
-        public static DataSet buscar_articulos_activos()
+        public static DataSet buscar_articulos_activos(string txtBusqueda)
         {
+            DataSet ds = new DataSet();
+            DataRow row;
             Modulo_AdministracionContext db = new Modulo_AdministracionContext();
+      
+            var txtBusquedaSplit = txtBusqueda.Split(' ').ToList();
 
-            var articulos = (from a in db.articulo
-                             join f in db.familia on a.id_tabla_familia equals f.id_tabla_familia
-                             where a.fec_baja == null //ARTICULOS ACTIVOS
-                             orderby a.id_orden ascending
-                             select new
-                             {
-                                 codigo_articulo_marca = a.codigo_articulo_marca,
-                                 codigo_articulo = a.codigo_articulo,
-                                 descripcion_articulo = a.descripcion_articulo,
-                                 precio_lista = a.precio_lista,
-                                 id_tabla_familia = a.id_tabla_familia,
-                                 sn_oferta = a.sn_oferta,
-                                 path_img = a.path_img, //ESTE DATO SOLAMENTE EXISTE EN LA BD DE LA WEB
-                                 id_articulo = a.id_articulo,
-                                 id_orden = a.id_orden,
-                                 algoritmo_1 = f.algoritmo_1,
-                                 algoritmo_2 = f.algoritmo_2,
-                                 algoritmo_3 = f.algoritmo_3,
-                                 algoritmo_4 = f.algoritmo_4,
-                                 algoritmo_5 = f.algoritmo_5,
-                                 algoritmo_6 = f.algoritmo_6,
-                                 algoritmo_7 = f.algoritmo_7,
-                                 algoritmo_8 = f.algoritmo_8,
-                                 algoritmo_9 = f.algoritmo_9,
-                             }).ToList();
+            //CANTIDAD TOTAL ARTICULOS
+            int articulos_total = db.articulo
+                                     .Count(a =>
+                                                a.fec_baja == null && //ARTICULOS ACTIVOS
+                                                (
+                                                    (txtBusquedaSplit.All(aux => (a.codigo_articulo_marca.ToUpper() + " " + a.codigo_articulo + " " + a.descripcion_articulo).Contains(aux.ToUpper()))) //busco por codigo_articulo_marca + codigo_articulo + descripcion_articulo
+                                               ));
 
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("codigo_articulo_marca");
-            dt.Columns.Add("codigo_articulo");
-            dt.Columns.Add("descripcion_articulo");
-            dt.Columns.Add("precio_lista");
-            dt.Columns.Add("coeficiente");
-            dt.Columns.Add("precio_final");
-            dt.Columns.Add("id_tabla_familia");
-            dt.Columns.Add("sn_oferta");
-            dt.Columns.Add("path_img");
-            dt.Columns.Add("id_articulo");
-            dt.Columns.Add("id_orden");
+            DataTable dtCantidadTotalArticulos = new DataTable();
+            dtCantidadTotalArticulos.Columns.Add("cantidad_total_articulos");
+            row = dtCantidadTotalArticulos.NewRow();
+            row["cantidad_total_articulos"] = articulos_total;
+            dtCantidadTotalArticulos.Rows.Add(row);
+            ds.Tables.Add(dtCantidadTotalArticulos);
+
+            //SKIP - TAKE
+            var articulos = db.articulo
+                              .Join(db.familia,
+                                  articulo => articulo.id_tabla_familia,   
+                                  familia => familia.id_tabla_familia, 
+                                  (articulo, familia) => new { Articulo = articulo, Familia = familia })
+                              .Where(articulo_familia =>
+                                        articulo_familia.Articulo.fec_baja == null && //ARTICULOS ACTIVOS
+                                        (
+                                                      (txtBusquedaSplit.All(aux => (articulo_familia.Articulo.codigo_articulo_marca.ToUpper() + " " + articulo_familia.Articulo.codigo_articulo + " " + articulo_familia.Articulo.descripcion_articulo).Contains(aux.ToUpper()))) //busco por codigo_articulo_marca + codigo_articulo + descripcion_articulo
+                                        )
+                                    )
+                               .Select(articulo_familia => new  
+                               {
+                                   codigo_articulo_marca = articulo_familia.Articulo.codigo_articulo_marca,
+                                   codigo_articulo = articulo_familia.Articulo.codigo_articulo,
+                                   descripcion_articulo = articulo_familia.Articulo.descripcion_articulo,
+                                   precio_lista = articulo_familia.Articulo.precio_lista,
+                                   id_tabla_familia = articulo_familia.Articulo.id_tabla_familia,
+                                   sn_oferta = articulo_familia.Articulo.sn_oferta,
+                                   path_img = articulo_familia.Articulo.path_img, //ESTE DATO SOLAMENTE EXISTE EN LA BD DE LA WEB
+                                   id_articulo = articulo_familia.Articulo.id_articulo,
+                                   id_orden = articulo_familia.Articulo.id_orden,
+                                   algoritmo_1 = articulo_familia.Familia.algoritmo_1,
+                                   algoritmo_2 = articulo_familia.Familia.algoritmo_2,
+                                   algoritmo_3 = articulo_familia.Familia.algoritmo_3,
+                                   algoritmo_4 = articulo_familia.Familia.algoritmo_4,
+                                   algoritmo_5 = articulo_familia.Familia.algoritmo_5,
+                                   algoritmo_6 = articulo_familia.Familia.algoritmo_6,
+                                   algoritmo_7 = articulo_familia.Familia.algoritmo_7,
+                                   algoritmo_8 = articulo_familia.Familia.algoritmo_8,
+                                   algoritmo_9 = articulo_familia.Familia.algoritmo_9,
+                               })
+                               .OrderBy(articulo_familia => articulo_familia.id_orden)
+                               .ToList();
+
+         
+
+            DataTable dtDatos = new DataTable();
+            dtDatos.Columns.Add("codigo_articulo_marca");
+            dtDatos.Columns.Add("codigo_articulo");
+            dtDatos.Columns.Add("descripcion_articulo");
+            dtDatos.Columns.Add("precio_lista");
+            dtDatos.Columns.Add("coeficiente");
+            dtDatos.Columns.Add("precio_final");
+            dtDatos.Columns.Add("id_tabla_familia");
+            dtDatos.Columns.Add("sn_oferta");
+            dtDatos.Columns.Add("path_img");
+            dtDatos.Columns.Add("id_articulo");
+            dtDatos.Columns.Add("id_orden");
 
             if (articulos != null)
             {
@@ -415,7 +409,7 @@ namespace Modulo_Administracion.Logica
                     decimal coeficiente = Logica_Familia.precio_coeficiente(2, articulo.algoritmo_1, articulo.algoritmo_2, articulo.algoritmo_3, articulo.algoritmo_4, articulo.algoritmo_5, articulo.algoritmo_6, articulo.algoritmo_7, articulo.algoritmo_8, articulo.algoritmo_9);
 
 
-                    DataRow row = dt.NewRow();
+                    row = dtDatos.NewRow();
                     row["codigo_articulo_marca"] = articulo.codigo_articulo_marca;
                     row["codigo_articulo"] = articulo.codigo_articulo;
                     row["descripcion_articulo"] = articulo.descripcion_articulo;
@@ -427,12 +421,12 @@ namespace Modulo_Administracion.Logica
                     row["path_img"] = articulo.path_img;
                     row["id_articulo"] = articulo.id_articulo;
                     row["id_orden"] = articulo.id_orden;
-                    dt.Rows.Add(row);
+                    dtDatos.Rows.Add(row);
                 }
             }
 
-            DataSet ds = new DataSet();
-            ds.Tables.Add(dt);
+           
+            ds.Tables.Add(dtDatos);
             return ds;
         }
 

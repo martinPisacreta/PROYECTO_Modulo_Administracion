@@ -46,7 +46,6 @@
             this.txtNroCopias = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.btnDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblImporteTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -89,9 +88,14 @@
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.lblObservacion = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panelConceptoServicio = new System.Windows.Forms.Panel();
+            this.HastaDTP = new System.Windows.Forms.DateTimePicker();
+            this.VtoDTP = new System.Windows.Forms.DateTimePicker();
+            this.Label23 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.DesdeDTP = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.produccion_rb = new System.Windows.Forms.RadioButton();
             this.testing_rb = new System.Windows.Forms.RadioButton();
@@ -118,13 +122,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.MyCuitTX = new System.Windows.Forms.TextBox();
-            this.panelConceptoServicio = new System.Windows.Forms.Panel();
-            this.DesdeDTP = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.HastaDTP = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.VtoDTP = new System.Windows.Forms.DateTimePicker();
-            this.Label23 = new System.Windows.Forms.Label();
             this.panelFacturacion.SuspendLayout();
             this.panelPorcentaje.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -135,12 +132,10 @@
             this.panelPagoInstantaneo.SuspendLayout();
             this.panelPagoMenor30Dias.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.panel7.SuspendLayout();
+            this.panelConceptoServicio.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panelConceptoServicio.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFacturacion
@@ -154,7 +149,6 @@
             this.panelFacturacion.Controls.Add(this.chkMostrarMayor30Dias);
             this.panelFacturacion.Controls.Add(this.panelPorcentaje);
             this.panelFacturacion.Controls.Add(this.lblTotal);
-            this.panelFacturacion.Controls.Add(this.btnDropDownButton);
             this.panelFacturacion.Controls.Add(this.panel1);
             this.panelFacturacion.Controls.Add(this.panelPagoMayor30Dias);
             this.panelFacturacion.Controls.Add(this.btnEliminar);
@@ -364,20 +358,6 @@
             this.lblTotal.Size = new System.Drawing.Size(64, 17);
             this.lblTotal.TabIndex = 100;
             this.lblTotal.Text = "Total: 0";
-            // 
-            // btnDropDownButton
-            // 
-            this.btnDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDropDownButton.Appearance.BackColor = System.Drawing.Color.Firebrick;
-            this.btnDropDownButton.Appearance.Options.UseBackColor = true;
-            this.btnDropDownButton.AppearanceHovered.BackColor = System.Drawing.Color.IndianRed;
-            this.btnDropDownButton.AppearanceHovered.Options.UseBackColor = true;
-            this.btnDropDownButton.Location = new System.Drawing.Point(1142, 690);
-            this.btnDropDownButton.Name = "btnDropDownButton";
-            this.btnDropDownButton.Size = new System.Drawing.Size(255, 42);
-            this.btnDropDownButton.TabIndex = 98;
-            this.btnDropDownButton.Text = "Elija una opcion para grabar";
-            this.btnDropDownButton.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // panel1
             // 
@@ -887,14 +867,6 @@
             this.panel4.Size = new System.Drawing.Size(509, 234);
             this.panel4.TabIndex = 107;
             // 
-            // gridView1
-            // 
-            this.gridView1.Name = "gridView1";
-            // 
-            // gridView2
-            // 
-            this.gridView2.Name = "gridView2";
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.panelConceptoServicio);
@@ -918,6 +890,73 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1521, 280);
             this.panel7.TabIndex = 45;
+            // 
+            // panelConceptoServicio
+            // 
+            this.panelConceptoServicio.Controls.Add(this.HastaDTP);
+            this.panelConceptoServicio.Controls.Add(this.VtoDTP);
+            this.panelConceptoServicio.Controls.Add(this.Label23);
+            this.panelConceptoServicio.Controls.Add(this.label3);
+            this.panelConceptoServicio.Controls.Add(this.DesdeDTP);
+            this.panelConceptoServicio.Controls.Add(this.label2);
+            this.panelConceptoServicio.Location = new System.Drawing.Point(968, 157);
+            this.panelConceptoServicio.Name = "panelConceptoServicio";
+            this.panelConceptoServicio.Size = new System.Drawing.Size(457, 108);
+            this.panelConceptoServicio.TabIndex = 99;
+            // 
+            // HastaDTP
+            // 
+            this.HastaDTP.Location = new System.Drawing.Point(126, 40);
+            this.HastaDTP.Margin = new System.Windows.Forms.Padding(4);
+            this.HastaDTP.Name = "HastaDTP";
+            this.HastaDTP.Size = new System.Drawing.Size(297, 22);
+            this.HastaDTP.TabIndex = 100;
+            // 
+            // VtoDTP
+            // 
+            this.VtoDTP.Location = new System.Drawing.Point(126, 70);
+            this.VtoDTP.Margin = new System.Windows.Forms.Padding(4);
+            this.VtoDTP.Name = "VtoDTP";
+            this.VtoDTP.Size = new System.Drawing.Size(297, 22);
+            this.VtoDTP.TabIndex = 101;
+            // 
+            // Label23
+            // 
+            this.Label23.AutoSize = true;
+            this.Label23.Location = new System.Drawing.Point(13, 71);
+            this.Label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Label23.Name = "Label23";
+            this.Label23.Size = new System.Drawing.Size(29, 17);
+            this.Label23.TabIndex = 100;
+            this.Label23.Text = "Vto";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 41);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 17);
+            this.label3.TabIndex = 99;
+            this.label3.Text = "Fecha Hasta";
+            // 
+            // DesdeDTP
+            // 
+            this.DesdeDTP.Location = new System.Drawing.Point(126, 6);
+            this.DesdeDTP.Margin = new System.Windows.Forms.Padding(4);
+            this.DesdeDTP.Name = "DesdeDTP";
+            this.DesdeDTP.Size = new System.Drawing.Size(297, 22);
+            this.DesdeDTP.TabIndex = 98;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 17);
+            this.label2.TabIndex = 97;
+            this.label2.Text = "Fecha Desde";
             // 
             // GroupBox1
             // 
@@ -1184,73 +1223,6 @@
             this.MyCuitTX.Size = new System.Drawing.Size(160, 22);
             this.MyCuitTX.TabIndex = 45;
             // 
-            // panelConceptoServicio
-            // 
-            this.panelConceptoServicio.Controls.Add(this.HastaDTP);
-            this.panelConceptoServicio.Controls.Add(this.VtoDTP);
-            this.panelConceptoServicio.Controls.Add(this.Label23);
-            this.panelConceptoServicio.Controls.Add(this.label3);
-            this.panelConceptoServicio.Controls.Add(this.DesdeDTP);
-            this.panelConceptoServicio.Controls.Add(this.label2);
-            this.panelConceptoServicio.Location = new System.Drawing.Point(968, 157);
-            this.panelConceptoServicio.Name = "panelConceptoServicio";
-            this.panelConceptoServicio.Size = new System.Drawing.Size(457, 108);
-            this.panelConceptoServicio.TabIndex = 99;
-            // 
-            // DesdeDTP
-            // 
-            this.DesdeDTP.Location = new System.Drawing.Point(126, 6);
-            this.DesdeDTP.Margin = new System.Windows.Forms.Padding(4);
-            this.DesdeDTP.Name = "DesdeDTP";
-            this.DesdeDTP.Size = new System.Drawing.Size(297, 22);
-            this.DesdeDTP.TabIndex = 98;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 17);
-            this.label2.TabIndex = 97;
-            this.label2.Text = "Fecha Desde";
-            // 
-            // HastaDTP
-            // 
-            this.HastaDTP.Location = new System.Drawing.Point(126, 40);
-            this.HastaDTP.Margin = new System.Windows.Forms.Padding(4);
-            this.HastaDTP.Name = "HastaDTP";
-            this.HastaDTP.Size = new System.Drawing.Size(297, 22);
-            this.HastaDTP.TabIndex = 100;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 41);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 17);
-            this.label3.TabIndex = 99;
-            this.label3.Text = "Fecha Hasta";
-            // 
-            // VtoDTP
-            // 
-            this.VtoDTP.Location = new System.Drawing.Point(126, 70);
-            this.VtoDTP.Margin = new System.Windows.Forms.Padding(4);
-            this.VtoDTP.Name = "VtoDTP";
-            this.VtoDTP.Size = new System.Drawing.Size(297, 22);
-            this.VtoDTP.TabIndex = 101;
-            // 
-            // Label23
-            // 
-            this.Label23.AutoSize = true;
-            this.Label23.Location = new System.Drawing.Point(13, 71);
-            this.Label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Label23.Name = "Label23";
-            this.Label23.Size = new System.Drawing.Size(29, 17);
-            this.Label23.TabIndex = 100;
-            this.Label23.Text = "Vto";
-            // 
             // frmFacturaAFIP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1282,16 +1254,14 @@
             this.panelPagoMenor30Dias.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.panelConceptoServicio.ResumeLayout(false);
+            this.panelConceptoServicio.PerformLayout();
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panelConceptoServicio.ResumeLayout(false);
-            this.panelConceptoServicio.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1302,7 +1272,6 @@
         private System.Windows.Forms.DataGridView dgvFactura;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnSalir;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Panel panelPagoMayor30Dias;
         private System.Windows.Forms.TextBox txtPagoMayor30DiasPorcentaje;
         private System.Windows.Forms.Label lblImportePagoMayor30Dias;
@@ -1323,12 +1292,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label11;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.DropDownButton btnDropDownButton;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label lblObservacion;

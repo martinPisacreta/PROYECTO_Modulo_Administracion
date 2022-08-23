@@ -1,5 +1,4 @@
-﻿using DevExpress.Utils.Menu;
-using Modulo_Administracion.Capas.Logica_Afip;
+﻿using Modulo_Administracion.Capas.Logica_Afip;
 using Modulo_Administracion.Clases;
 using Modulo_Administracion.Clases.Custom;
 using Modulo_Administracion.Logica;
@@ -117,14 +116,7 @@ namespace Modulo_Administracion.Vista
                     //panel2.Enabled = false;
                 }
 
-                DXPopupMenu popupMenu = new DXPopupMenu();
-                popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_1_dropDownButton });
-                popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_2_dropDownButton });
-                popupMenu.Items.Add(new DXMenuCheckItem() { Caption = opcion_3_dropDownButton });
-                btnDropDownButton.DropDownControl = popupMenu;
-
-                foreach (DXMenuItem item in popupMenu.Items)
-                    item.Click += itemDropDownButton_Click;
+              
 
 
                 String pkInstalledPrinters;
@@ -793,7 +785,7 @@ namespace Modulo_Administracion.Vista
                 if (factura.sn_emitida == -1) //si esta emitida la factura , ingreso aca 
                 {
                     dgvFactura.ReadOnly = true;
-                    btnDropDownButton.Enabled = false;
+                    //btnDropDownButton.Enabled = false;
                     btnEliminar.Enabled = false;
                     txtObservacion.Enabled = false;
                     panelPorcentaje.Enabled = false;
@@ -809,7 +801,7 @@ namespace Modulo_Administracion.Vista
                 else //si todavia no esta impresa la factura , ingreso aca 
                 {
                     dgvFactura.ReadOnly = false;
-                    btnDropDownButton.Enabled = true;
+                    //btnDropDownButton.Enabled = true;
                     btnEliminar.Enabled = true;
                     txtObservacion.Enabled = true;
                     panelPorcentaje.Enabled = true;
@@ -2300,33 +2292,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-        private void itemDropDownButton_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                if (((DXMenuItem)sender).Caption == opcion_1_dropDownButton)
-                {
-                    grabar(1);
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_2_dropDownButton)
-                {
-                    grabar(2);
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_3_dropDownButton)
-                {
-                    grabar(3);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
+     
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {

@@ -46,7 +46,6 @@
             this.txtNroCopias = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.btnDropDownButton = new DevExpress.XtraEditors.DropDownButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblImporteTotal = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -58,6 +57,7 @@
             this.lblImportePagoMayor30Dias = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.cbAccionMenu = new System.Windows.Forms.ComboBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvFactura = new System.Windows.Forms.DataGridView();
             this.col_cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,10 +99,11 @@
             this.lblObservacion = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelBusquedaArticulo = new System.Windows.Forms.Panel();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelSuperiorBusquedaArticulo = new System.Windows.Forms.Panel();
+            this.btnBusquedaArticulo = new System.Windows.Forms.Button();
+            this.btnLimpiarBusquedaArticulo = new System.Windows.Forms.Button();
+            this.txtBusquedaArticulo = new System.Windows.Forms.TextBox();
+            this.dgvBusquedaArticulo = new System.Windows.Forms.DataGridView();
             this.panelFacturacion.SuspendLayout();
             this.panelPorcentaje.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -115,10 +116,9 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelBusquedaArticulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelSuperiorBusquedaArticulo)).BeginInit();
+            this.panelSuperiorBusquedaArticulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBusquedaArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelFacturacion
@@ -132,10 +132,10 @@
             this.panelFacturacion.Controls.Add(this.chkMostrarMayor30Dias);
             this.panelFacturacion.Controls.Add(this.panelPorcentaje);
             this.panelFacturacion.Controls.Add(this.lblTotal);
-            this.panelFacturacion.Controls.Add(this.btnDropDownButton);
             this.panelFacturacion.Controls.Add(this.panel1);
             this.panelFacturacion.Controls.Add(this.panelPagoMayor30Dias);
             this.panelFacturacion.Controls.Add(this.btnEliminar);
+            this.panelFacturacion.Controls.Add(this.cbAccionMenu);
             this.panelFacturacion.Controls.Add(this.btnSalir);
             this.panelFacturacion.Controls.Add(this.dgvFactura);
             this.panelFacturacion.Controls.Add(this.panelPagoInstantaneo);
@@ -343,20 +343,6 @@
             this.lblTotal.TabIndex = 100;
             this.lblTotal.Text = "Total: 0";
             // 
-            // btnDropDownButton
-            // 
-            this.btnDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDropDownButton.Appearance.BackColor = System.Drawing.Color.Firebrick;
-            this.btnDropDownButton.Appearance.Options.UseBackColor = true;
-            this.btnDropDownButton.AppearanceHovered.BackColor = System.Drawing.Color.IndianRed;
-            this.btnDropDownButton.AppearanceHovered.Options.UseBackColor = true;
-            this.btnDropDownButton.Location = new System.Drawing.Point(1142, 690);
-            this.btnDropDownButton.Name = "btnDropDownButton";
-            this.btnDropDownButton.Size = new System.Drawing.Size(255, 42);
-            this.btnDropDownButton.TabIndex = 98;
-            this.btnDropDownButton.Text = "Elija una opcion para grabar";
-            this.btnDropDownButton.Click += new System.EventHandler(this.btnGrabar_Click);
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -503,6 +489,19 @@
             this.btnEliminar.Text = "Eliminar Fila";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // cbAccionMenu
+            // 
+            this.cbAccionMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAccionMenu.BackColor = System.Drawing.Color.Firebrick;
+            this.cbAccionMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAccionMenu.ForeColor = System.Drawing.Color.White;
+            this.cbAccionMenu.FormattingEnabled = true;
+            this.cbAccionMenu.Location = new System.Drawing.Point(1142, 690);
+            this.cbAccionMenu.Name = "cbAccionMenu";
+            this.cbAccionMenu.Size = new System.Drawing.Size(235, 24);
+            this.cbAccionMenu.TabIndex = 105;
+            this.cbAccionMenu.SelectedIndexChanged += new System.EventHandler(this.cbAccionMenu_SelectedIndexChanged);
             // 
             // btnSalir
             // 
@@ -975,38 +974,89 @@
             this.panelBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelBusquedaArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelBusquedaArticulo.Controls.Add(this.gridControl1);
+            this.panelBusquedaArticulo.Controls.Add(this.panelSuperiorBusquedaArticulo);
+            this.panelBusquedaArticulo.Controls.Add(this.dgvBusquedaArticulo);
             this.panelBusquedaArticulo.Location = new System.Drawing.Point(12, 13);
             this.panelBusquedaArticulo.Name = "panelBusquedaArticulo";
             this.panelBusquedaArticulo.Size = new System.Drawing.Size(1521, 279);
             this.panelBusquedaArticulo.TabIndex = 1;
             // 
-            // gridControl1
+            // panelSuperiorBusquedaArticulo
             // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelSuperiorBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(17, 12);
-            this.gridControl1.MainView = this.gridView3;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1491, 256);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView3});
+            this.panelSuperiorBusquedaArticulo.Controls.Add(this.btnBusquedaArticulo);
+            this.panelSuperiorBusquedaArticulo.Controls.Add(this.btnLimpiarBusquedaArticulo);
+            this.panelSuperiorBusquedaArticulo.Controls.Add(this.txtBusquedaArticulo);
+            this.panelSuperiorBusquedaArticulo.Location = new System.Drawing.Point(17, 3);
+            this.panelSuperiorBusquedaArticulo.Name = "panelSuperiorBusquedaArticulo";
+            this.panelSuperiorBusquedaArticulo.Size = new System.Drawing.Size(1491, 47);
+            this.panelSuperiorBusquedaArticulo.TabIndex = 2;
             // 
-            // gridView3
+            // btnBusquedaArticulo
             // 
-            this.gridView3.GridControl = this.gridControl1;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsBehavior.Editable = false;
-            this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
+            this.btnBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBusquedaArticulo.BackColor = System.Drawing.Color.Firebrick;
+            this.btnBusquedaArticulo.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.btnBusquedaArticulo.FlatAppearance.CheckedBackColor = System.Drawing.Color.IndianRed;
+            this.btnBusquedaArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.IndianRed;
+            this.btnBusquedaArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
+            this.btnBusquedaArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBusquedaArticulo.ForeColor = System.Drawing.Color.White;
+            this.btnBusquedaArticulo.Location = new System.Drawing.Point(1261, 0);
+            this.btnBusquedaArticulo.Name = "btnBusquedaArticulo";
+            this.btnBusquedaArticulo.Size = new System.Drawing.Size(105, 42);
+            this.btnBusquedaArticulo.TabIndex = 60;
+            this.btnBusquedaArticulo.Text = "Buscar";
+            this.btnBusquedaArticulo.UseVisualStyleBackColor = false;
+            this.btnBusquedaArticulo.Click += new System.EventHandler(this.btnBusquedaArticulo_Click);
             // 
-            // gridView1
+            // btnLimpiarBusquedaArticulo
             // 
-            this.gridView1.Name = "gridView1";
+            this.btnLimpiarBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLimpiarBusquedaArticulo.BackColor = System.Drawing.Color.Firebrick;
+            this.btnLimpiarBusquedaArticulo.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.btnLimpiarBusquedaArticulo.FlatAppearance.CheckedBackColor = System.Drawing.Color.IndianRed;
+            this.btnLimpiarBusquedaArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.IndianRed;
+            this.btnLimpiarBusquedaArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
+            this.btnLimpiarBusquedaArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarBusquedaArticulo.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarBusquedaArticulo.Location = new System.Drawing.Point(1372, 0);
+            this.btnLimpiarBusquedaArticulo.Name = "btnLimpiarBusquedaArticulo";
+            this.btnLimpiarBusquedaArticulo.Size = new System.Drawing.Size(105, 42);
+            this.btnLimpiarBusquedaArticulo.TabIndex = 59;
+            this.btnLimpiarBusquedaArticulo.Text = "Limpiar";
+            this.btnLimpiarBusquedaArticulo.UseVisualStyleBackColor = false;
+            this.btnLimpiarBusquedaArticulo.Click += new System.EventHandler(this.btnLimpiarBusquedaArticulo_Click);
             // 
-            // gridView2
+            // txtBusquedaArticulo
             // 
-            this.gridView2.Name = "gridView2";
+            this.txtBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBusquedaArticulo.Location = new System.Drawing.Point(721, 10);
+            this.txtBusquedaArticulo.MaxLength = 50;
+            this.txtBusquedaArticulo.Name = "txtBusquedaArticulo";
+            this.txtBusquedaArticulo.Size = new System.Drawing.Size(532, 23);
+            this.txtBusquedaArticulo.TabIndex = 0;
+            // 
+            // dgvBusquedaArticulo
+            // 
+            this.dgvBusquedaArticulo.AllowUserToAddRows = false;
+            this.dgvBusquedaArticulo.AllowUserToDeleteRows = false;
+            this.dgvBusquedaArticulo.AllowUserToResizeColumns = false;
+            this.dgvBusquedaArticulo.AllowUserToResizeRows = false;
+            this.dgvBusquedaArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBusquedaArticulo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBusquedaArticulo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBusquedaArticulo.Location = new System.Drawing.Point(17, 56);
+            this.dgvBusquedaArticulo.MultiSelect = false;
+            this.dgvBusquedaArticulo.Name = "dgvBusquedaArticulo";
+            this.dgvBusquedaArticulo.ReadOnly = true;
+            this.dgvBusquedaArticulo.RowHeadersWidth = 51;
+            this.dgvBusquedaArticulo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBusquedaArticulo.Size = new System.Drawing.Size(1491, 218);
+            this.dgvBusquedaArticulo.TabIndex = 0;
+            this.dgvBusquedaArticulo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBusquedaArticulo_CellDoubleClick);
             // 
             // frmFactura
             // 
@@ -1042,10 +1092,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panelBusquedaArticulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelSuperiorBusquedaArticulo)).EndInit();
+            this.panelSuperiorBusquedaArticulo.ResumeLayout(false);
+            this.panelSuperiorBusquedaArticulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBusquedaArticulo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1066,7 +1116,6 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panelBusquedaArticulo;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Panel panelPagoMayor30Dias;
         private System.Windows.Forms.TextBox txtPagoMayor30DiasPorcentaje;
         private System.Windows.Forms.Label lblImportePagoMayor30Dias;
@@ -1087,14 +1136,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label11;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.DropDownButton btnDropDownButton;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label lblObservacion;
@@ -1127,5 +1172,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_iva_aumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id_articulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_id_factura_detalle;
+        private System.Windows.Forms.ComboBox cbAccionMenu;
+        private System.Windows.Forms.DataGridView dgvBusquedaArticulo;
+        private System.Windows.Forms.Panel panelSuperiorBusquedaArticulo;
+        private System.Windows.Forms.TextBox txtBusquedaArticulo;
+        private System.Windows.Forms.Button btnBusquedaArticulo;
+        private System.Windows.Forms.Button btnLimpiarBusquedaArticulo;
     }
 }

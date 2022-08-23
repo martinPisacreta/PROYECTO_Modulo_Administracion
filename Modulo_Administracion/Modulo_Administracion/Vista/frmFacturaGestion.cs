@@ -1,6 +1,4 @@
-﻿using DevExpress.Utils.Menu;
-using DevExpress.XtraReports.UI;
-using Modulo_Administracion.Clases;
+﻿using Modulo_Administracion.Clases;
 using Modulo_Administracion.Clases.Custom;
 using Modulo_Administracion.Logica;
 using System;
@@ -98,15 +96,10 @@ namespace Modulo_Administracion.Vista
 
 
                 txtClienteId.Visible = false;
-                DXPopupMenu popupMenu = new DXPopupMenu();
-                //popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_1_dropDownButton });
-                popupMenu.Items.Add(new DXMenuItem() { Caption = opcion_2_dropDownButton });
-                popupMenu.Items.Add(new DXMenuCheckItem() { Caption = opcion_3_dropDownButton });
-                popupMenu.Items.Add(new DXMenuCheckItem() { Caption = opcion_4_dropDownButton });
-                btnDropDownButton.DropDownControl = popupMenu;
 
-                foreach (DXMenuItem item in popupMenu.Items)
-                    item.Click += itemDropDownButton_Click;
+                popupMenu.Items.Add(opcion_2_dropDownButton);
+                popupMenu.Items.Add(opcion_3_dropDownButton);
+                popupMenu.Items.Add(opcion_4_dropDownButton);
 
 
                 String pkInstalledPrinters;
@@ -594,224 +587,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-        private void itemDropDownButton_Click(object sender, EventArgs e)
-        {
-            frmEspere frm_Espere = new frmEspere();
-
-            try
-            {
-                if (((DXMenuItem)sender).Caption == opcion_2_dropDownButton)
-                {
-                    if (dgvFacturas.SelectedRows.Count == 1)
-                    {
-                        //if (Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[8].Value) == 1)
-                        //{
-                        Cursor.Current = Cursors.WaitCursor;
-                        frm_Espere.Show();
-
-                        if (Program.snUsoDevExpress == true)
-                        {
-                            reporte_factura_1 reporte = new reporte_factura_1();
-                            reporte.Parameters["id_factura"].Value = Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[0].Value);
-                            reporte.Parameters["id_factura"].Visible = false;
-
-                            frm_Espere.Hide();
-                            Cursor.Current = Cursors.Default;
-
-                            reporte.ShowPreview();
-                        }
-                        else
-                        {
-                            factura _factura = Logica_Factura.buscar_factura(Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[0].Value));
-                            Process.Start(_factura.path_factura);
-
-                            frm_Espere.Hide();
-                            Cursor.Current = Cursors.Default;
-                        }
-                       
-                        //}
-                    }
-                    else if (dgvFacturas.SelectedRows.Count == 0)
-                    {
-                        throw new Exception("Debe seleccionar una fila");
-                    }
-                    else if (dgvFacturas.SelectedRows.Count > 1)
-                    {
-                        throw new Exception("Debe seleccionar una sola fila");
-                    }
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_3_dropDownButton) //genero pdf  (si la factura no esta emitida , hago un update en la base primero)
-                {
-                    Cursor.Current = Cursors.WaitCursor;
-                    frm_Espere.Show();
-
-                    int cantidad = 0;
-                    if (dgvFacturas.SelectedRows.Count > 0)
-                    {
-                        try
-                        {
-                            foreach (DataGridViewRow row in dgvFacturas.SelectedRows)
-                            {
-                                factura factura_db = Logica_Factura.buscar_factura(Convert.ToInt32(row.Cells[0].Value)); //voy a buscar la factura en la base de datos 
-                                if (factura_db.sn_emitida == 0) //si la factura no esta emitida...
-                                {
-                                    //modifico ciertos datos del objeto , SI CAMBIO ACA , TAMBIEN CAMBIAR LINEA DONDE DICE "PEPE EL PISTOLERO"
-                                    factura_db.sn_emitida = -1;
-                                    factura_db.fecha = DateTime.Now;
-                                    factura_db.fecha_sn_emitida = DateTime.Now;
-                                    //hasta aca
-
-                                    factura factura_modificada = Logica_Factura.modificar_factura(factura_db); //establesco el valor en la base de datos
-                                    if (factura_modificada != null)
-                                    {
-                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_modificada);
-
-                                        if (FilePath_PDF != "")
-                                        {
-                                            cantidad = cantidad + 1;
-                                        }
-                                    }
-
-                                }
-                                else //si ya esta emitida
-                                {
-                                    if (factura_db != null) //voy a buscar la factura que fui a buscar a la base de datos
-                                    {
-                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_db);
-                                        if (FilePath_PDF != "")
-                                        {
-                                            cantidad = cantidad + 1;
-                                        }
-                                    }
-                                }
-                            }
-
-
-
-                            frm_Espere.Hide();
-                            Cursor.Current = Cursors.Default;
-                            MessageBox.Show("Generacion PDFs correctos: " + cantidad + " de " + dgvFacturas.SelectedRows.Count, "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            Cursor.Current = Cursors.WaitCursor;
-                            rdBusqueda1.Checked = true;
-                            monthCalendar1.Enabled = true;
-                            panelBusqueda2.Enabled = false;
-                            buscar_facturas_por_fecha();
-                            Cursor.Current = Cursors.Default;
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Debe seleccionar una fila");
-                    }
-
-                }
-                else if (((DXMenuItem)sender).Caption == opcion_4_dropDownButton) //genero pdf e imprimo (si la factura no esta emitida , hago un update en la base primero)
-                {
-                    Cursor.Current = Cursors.WaitCursor;
-                    frm_Espere.Show();
-
-
-                    int cantidad = 0;
-                    if (dgvFacturas.SelectedRows.Count > 0)
-                    {
-
-                        try
-                        {
-                            foreach (DataGridViewRow row in dgvFacturas.SelectedRows)
-                            {
-                                factura factura_db = Logica_Factura.buscar_factura(Convert.ToInt32(row.Cells[0].Value)); //voy a buscar la factura en la base de datos
-                                if (factura_db.sn_emitida == 0) //si la factura no esta emitida...
-                                {
-                                    //modifico ciertos datos del objeto , SI CAMBIO ACA , TAMBIEN CAMBIAR LINEA DONDE DICE "PEPE EL PISTOLERO"
-                                    factura_db.sn_emitida = -1;
-                                    factura_db.fecha = DateTime.Now;
-                                    factura_db.fecha_sn_emitida = DateTime.Now;
-                                    //hasta aca
-
-                                    factura factura_modificada = Logica_Factura.modificar_factura(factura_db); //establesco el valor en la base de datos
-                                    if (factura_modificada != null)
-                                    {
-                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_modificada);
-                                        if (FilePath_PDF != "")
-                                        {
-                                            if (txtNroCopias.Text == "")
-                                            {
-                                                throw new Exception("Debe ingresar el nro de copias");
-                                            }
-
-                                            bool impresion = Logica_Funciones_Generales.mandar_a_imprimir(FilePath_PDF, cbImpresoras.Text, Convert.ToInt16(txtNroCopias.Text));
-                                            if (impresion == true)
-                                            {
-                                                cantidad = cantidad + 1;
-                                            }
-                                        }
-                                    }
-
-                                }
-                                else //si ya esta emitida
-                                {
-
-                                    if (factura_db != null)  //voy a buscar la factura que fui a buscar a la base de datos
-                                    {
-                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_db);
-                                        if (FilePath_PDF != "")
-                                        {
-                                            if (txtNroCopias.Text == "")
-                                            {
-                                                throw new Exception("Debe ingresar el nro de copias");
-                                            }
-
-                                            bool impresion = Logica_Funciones_Generales.mandar_a_imprimir(FilePath_PDF, cbImpresoras.Text, Convert.ToInt16(txtNroCopias.Text));
-                                            if (impresion == true)
-                                            {
-                                                cantidad = cantidad + 1;
-                                            }
-                                        }
-                                    }
-                                }
-
-                            }
-
-                            frm_Espere.Hide();
-                            Cursor.Current = Cursors.Default;
-                            MessageBox.Show("Generacion PDFs/Impresiones correctas: " + cantidad + " de " + dgvFacturas.SelectedRows.Count, "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            Cursor.Current = Cursors.WaitCursor;
-                            rdBusqueda1.Checked = true;
-                            monthCalendar1.Enabled = true;
-                            panelBusqueda2.Enabled = false;
-                            buscar_facturas_por_fecha();
-                            Cursor.Current = Cursors.Default;
-                        }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("Debe seleccionar una fila");
-                    }
-                }
-            }
-
-            catch (Exception ex)
-            {
-                frm_Espere.Hide();
-                Cursor.Current = Cursors.Default;
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                frm_Espere.Hide();
-                Cursor.Current = Cursors.Default;
-            }
-        }
+      
 
 
 
@@ -1022,6 +798,215 @@ namespace Modulo_Administracion.Vista
                     stream.Close();
             }
             return false;
+        }
+
+        private void popupMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             frmEspere frm_Espere = new frmEspere();
+
+            try
+            {
+                string selectedValue = popupMenu.Text; //item index
+                if (selectedValue == opcion_2_dropDownButton)
+                {
+                    if (dgvFacturas.SelectedRows.Count == 1)
+                    {
+                        //if (Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[8].Value) == 1)
+                        //{
+                        Cursor.Current = Cursors.WaitCursor;
+                        frm_Espere.Show();
+
+                       
+                        factura _factura = Logica_Factura.buscar_factura(Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[0].Value));
+                        Process.Start(_factura.path_factura);
+
+                        frm_Espere.Hide();
+                        Cursor.Current = Cursors.Default;
+                        
+                       
+                        //}
+                    }
+                    else if (dgvFacturas.SelectedRows.Count == 0)
+                    {
+                        throw new Exception("Debe seleccionar una fila");
+                    }
+                    else if (dgvFacturas.SelectedRows.Count > 1)
+                    {
+                        throw new Exception("Debe seleccionar una sola fila");
+                    }
+                }
+                else if (selectedValue == opcion_3_dropDownButton) //genero pdf  (si la factura no esta emitida , hago un update en la base primero)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    frm_Espere.Show();
+
+                    int cantidad = 0;
+                    if (dgvFacturas.SelectedRows.Count > 0)
+                    {
+                        try
+                        {
+                            foreach (DataGridViewRow row in dgvFacturas.SelectedRows)
+                            {
+                                factura factura_db = Logica_Factura.buscar_factura(Convert.ToInt32(row.Cells[0].Value)); //voy a buscar la factura en la base de datos 
+                                if (factura_db.sn_emitida == 0) //si la factura no esta emitida...
+                                {
+                                    //modifico ciertos datos del objeto , SI CAMBIO ACA , TAMBIEN CAMBIAR LINEA DONDE DICE "PEPE EL PISTOLERO"
+                                    factura_db.sn_emitida = -1;
+                                    factura_db.fecha = DateTime.Now;
+                                    factura_db.fecha_sn_emitida = DateTime.Now;
+                                    //hasta aca
+
+                                    factura factura_modificada = Logica_Factura.modificar_factura(factura_db); //establesco el valor en la base de datos
+                                    if (factura_modificada != null)
+                                    {
+                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_modificada);
+
+                                        if (FilePath_PDF != "")
+                                        {
+                                            cantidad = cantidad + 1;
+                                        }
+                                    }
+
+                                }
+                                else //si ya esta emitida
+                                {
+                                    if (factura_db != null) //voy a buscar la factura que fui a buscar a la base de datos
+                                    {
+                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_db);
+                                        if (FilePath_PDF != "")
+                                        {
+                                            cantidad = cantidad + 1;
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+                            frm_Espere.Hide();
+                            Cursor.Current = Cursors.Default;
+                            MessageBox.Show("Generacion PDFs correctos: " + cantidad + " de " + dgvFacturas.SelectedRows.Count, "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            Cursor.Current = Cursors.WaitCursor;
+                            rdBusqueda1.Checked = true;
+                            monthCalendar1.Enabled = true;
+                            panelBusqueda2.Enabled = false;
+                            buscar_facturas_por_fecha();
+                            Cursor.Current = Cursors.Default;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Debe seleccionar una fila");
+                    }
+
+                }
+                else if (selectedValue == opcion_4_dropDownButton) //genero pdf e imprimo (si la factura no esta emitida , hago un update en la base primero)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    frm_Espere.Show();
+
+
+                    int cantidad = 0;
+                    if (dgvFacturas.SelectedRows.Count > 0)
+                    {
+
+                        try
+                        {
+                            foreach (DataGridViewRow row in dgvFacturas.SelectedRows)
+                            {
+                                factura factura_db = Logica_Factura.buscar_factura(Convert.ToInt32(row.Cells[0].Value)); //voy a buscar la factura en la base de datos
+                                if (factura_db.sn_emitida == 0) //si la factura no esta emitida...
+                                {
+                                    //modifico ciertos datos del objeto , SI CAMBIO ACA , TAMBIEN CAMBIAR LINEA DONDE DICE "PEPE EL PISTOLERO"
+                                    factura_db.sn_emitida = -1;
+                                    factura_db.fecha = DateTime.Now;
+                                    factura_db.fecha_sn_emitida = DateTime.Now;
+                                    //hasta aca
+
+                                    factura factura_modificada = Logica_Factura.modificar_factura(factura_db); //establesco el valor en la base de datos
+                                    if (factura_modificada != null)
+                                    {
+                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_modificada);
+                                        if (FilePath_PDF != "")
+                                        {
+                                            if (txtNroCopias.Text == "")
+                                            {
+                                                throw new Exception("Debe ingresar el nro de copias");
+                                            }
+
+                                            bool impresion = Logica_Funciones_Generales.mandar_a_imprimir(FilePath_PDF, cbImpresoras.Text, Convert.ToInt16(txtNroCopias.Text));
+                                            if (impresion == true)
+                                            {
+                                                cantidad = cantidad + 1;
+                                            }
+                                        }
+                                    }
+
+                                }
+                                else //si ya esta emitida
+                                {
+
+                                    if (factura_db != null)  //voy a buscar la factura que fui a buscar a la base de datos
+                                    {
+                                        string FilePath_PDF = Logica_Funciones_Generales.generar_reporteFactura(factura_db);
+                                        if (FilePath_PDF != "")
+                                        {
+                                            if (txtNroCopias.Text == "")
+                                            {
+                                                throw new Exception("Debe ingresar el nro de copias");
+                                            }
+
+                                            bool impresion = Logica_Funciones_Generales.mandar_a_imprimir(FilePath_PDF, cbImpresoras.Text, Convert.ToInt16(txtNroCopias.Text));
+                                            if (impresion == true)
+                                            {
+                                                cantidad = cantidad + 1;
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            frm_Espere.Hide();
+                            Cursor.Current = Cursors.Default;
+                            MessageBox.Show("Generacion PDFs/Impresiones correctas: " + cantidad + " de " + dgvFacturas.SelectedRows.Count, "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            Cursor.Current = Cursors.WaitCursor;
+                            rdBusqueda1.Checked = true;
+                            monthCalendar1.Enabled = true;
+                            panelBusqueda2.Enabled = false;
+                            buscar_facturas_por_fecha();
+                            Cursor.Current = Cursors.Default;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Debe seleccionar una fila");
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                frm_Espere.Hide();
+                Cursor.Current = Cursors.Default;
+                popupMenu.SelectedIndex = -1;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                frm_Espere.Hide();
+                Cursor.Current = Cursors.Default;
+            }
         }
     }
 }

@@ -46,7 +46,19 @@ namespace Modulo_Administracion.Logica
         {
             try
             {
-                if (sn_agregar_movimiento == false) //SI VENGO A BUSCAR LOS DATOS PERO NO DESDE EL "AGREGAR MOVIMIENTO" , CARGO TODO
+                if(sn_agregar_movimiento == true) //VENGO A BUSCAR LOS DATOS DESDE "AGREGAR MOVIMIENTO" , ENTONCES SOLAMENTE VOY A PODER GENERAR LINEAS SIN COMPROBANTES FISICOS
+                {
+                    string[] dataComboBox = {
+                                                ttipo_factura_constantes.s_valor_factura_a_sin_comprobante,
+                                                ttipo_factura_constantes.s_valor_factura_b_sin_comprobante,
+                                                ttipo_factura_constantes.s_valor_remito_sin_comprobante,
+                                                ttipo_factura_constantes.s_valor_nota_credito_sin_comprobante,
+                                                ttipo_factura_constantes.s_valor_nota_debito_sin_comprobante
+                                            };
+                    return dataComboBox;
+
+                }
+                else //SI VENGO A BUSCAR LOS DATOS PERO NO DESDE EL "AGREGAR MOVIMIENTO" , CARGO TODO
                 {
                     string[] dataComboBox = {
                                                 ttipo_factura_constantes.s_valor_remito,
@@ -60,18 +72,7 @@ namespace Modulo_Administracion.Logica
                                             };
                     return dataComboBox;
                 }
-                else //VENGO A BUSCAR LOS DATOS DESDE "AGREGAR MOVIMIENTO" , ENTONCES SOLAMENTE VOY A PODER GENERAR LINEAS SIN COMPROBANTES FISICOS
-                {
-                    string[] dataComboBox = {
-                                                ttipo_factura_constantes.s_valor_factura_a_sin_comprobante,
-                                                ttipo_factura_constantes.s_valor_factura_b_sin_comprobante,
-                                                ttipo_factura_constantes.s_valor_remito_sin_comprobante,
-                                                ttipo_factura_constantes.s_valor_nota_credito_sin_comprobante,
-                                                ttipo_factura_constantes.s_valor_nota_debito_sin_comprobante
-                                            };
-                    return dataComboBox;
-
-                }
+               
             }
             catch (Exception ex)
             {

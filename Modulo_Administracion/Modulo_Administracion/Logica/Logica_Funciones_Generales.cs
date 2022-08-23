@@ -1,5 +1,4 @@
-﻿using DevExpress.Pdf;
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using Modulo_Administracion.Clases;
 using Modulo_Administracion.Reporte.RDLC.reporteFactura;
 using Modulo_Administracion.Vista;
@@ -159,7 +158,7 @@ namespace Modulo_Administracion.Logica
             try
             {
                 DataSet ds = null;
-                reporte_factura_1 reporte = null;
+             
 
                 //mato los procesos que sean igual a FOXITREADER
                 var resultado = from item in System.Diagnostics.Process.GetProcesses()
@@ -172,25 +171,14 @@ namespace Modulo_Administracion.Logica
                 }
 
 
-                if (Program.snUsoDevExpress == true)
-                {
-                    //genero 
-                    reporte = new reporte_factura_1();
-                    reporte.Parameters["id_factura"].Value = Convert.ToInt32(factura.id_factura);
-                    reporte.Parameters["id_factura"].Visible = false;
+             
+                //genero 
+                ds = Logica_Factura.buscar_factura_print(factura.id_factura);
 
-                    reporte.ExportToPdf(factura.path_factura);
-                    return factura.path_factura;
-                }
-                else
-                {
-                    //genero 
-                    ds = Logica_Factura.buscar_factura_print(factura.id_factura);
-
-                    //llamo al formulario pero no es necesario que se abra porque solamente quiero generar el PDF
-                    frmReporteFactura form = new frmReporteFactura(ds.Tables[0], factura.path_factura);
-                    return factura.path_factura;
-                }
+                //llamo al formulario pero no es necesario que se abra porque solamente quiero generar el PDF
+                frmReporteFactura form = new frmReporteFactura(ds.Tables[0], factura.path_factura);
+                return factura.path_factura;
+                
 
             }
             catch (Exception ex)
@@ -234,46 +222,18 @@ namespace Modulo_Administracion.Logica
             try
             {
 
-                var pdfViewer = new DevExpress.XtraPdfViewer.PdfViewer();
-                pdfViewer.LoadDocument(ruta);
 
-                // If required, declare and specify the system printer settings.
-                PrinterSettings printerSettings = new PrinterSettings();
-                printerSettings.PrinterName = namePrinter;
-                printerSettings.PrintToFile = true;
-                printerSettings.Copies = nro_copias;
+                for (int i = 1; i <= nro_copias; i++)
+                {
 
-                // Declare the PDF printer settings.
-                // If required, pass the system settings to the PDF printer settings constructor.
-                PdfPrinterSettings pdfPrinterSettings = new PdfPrinterSettings(printerSettings);
-
-                // Specify the PDF printer settings.
-                pdfPrinterSettings.PageOrientation = PdfPrintPageOrientation.Auto;
-                pdfPrinterSettings.ScaleMode = PdfPrintScaleMode.CustomScale;
-                pdfPrinterSettings.Scale = 90;
-
-                // Print the document using the specified printer settings.
-                pdfViewer.Print(pdfPrinterSettings);
-                pdfViewer.CloseDocument();
-
-
-                //using (var pdfViewer = new DevExpress.XtraPdfViewer.PdfViewer())
-                //{
-                //    pdfViewer.LoadDocument(ruta);
-                //    //var settings = reportDataContext.ApplySettings(_sessionPrinterSettings);
-                //    pdfViewer.ShowPrintStatusDialog = false;
-                //    pdfViewer.Print();
-                //    pdfViewer.CloseDocument();
-                //}
-
-
-                //System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo(ruta);
-                //info.Arguments = "\"" + namePrinter + "\"";
-                //info.CreateNoWindow = true;
-                //info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                //info.UseShellExecute = true;
-                //info.Verb = "PrintTo";
-                //System.Diagnostics.Process.Start(info);
+                    System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo(ruta);
+                    info.Arguments = "\"" + namePrinter + "\"";
+                    info.CreateNoWindow = true;
+                    info.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                    info.UseShellExecute = true;
+                    info.Verb = "PrintTo";
+                    System.Diagnostics.Process.Start(info);
+                }
 
 
 

@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.panelSummary = new System.Windows.Forms.Panel();
+            this.lblSaldo = new System.Windows.Forms.Label();
+            this.lblSaldoLegend = new System.Windows.Forms.Label();
+            this.lblPago4 = new System.Windows.Forms.Label();
+            this.lblPago4Legend = new System.Windows.Forms.Label();
+            this.lblPago3 = new System.Windows.Forms.Label();
+            this.lblPago3Legend = new System.Windows.Forms.Label();
+            this.lblPago2 = new System.Windows.Forms.Label();
+            this.lblPago2Legend = new System.Windows.Forms.Label();
+            this.lblPago1 = new System.Windows.Forms.Label();
+            this.lblPago1Legend = new System.Windows.Forms.Label();
+            this.lblImpFactura = new System.Windows.Forms.Label();
+            this.lblImpFacturaLegend = new System.Windows.Forms.Label();
+            this.dgvClienteCuentaCorriente = new System.Windows.Forms.DataGridView();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.panelVer = new System.Windows.Forms.Panel();
             this.rdTodos = new System.Windows.Forms.RadioButton();
@@ -38,13 +52,11 @@
             this.btnGenerarReporte = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelPrincipal.SuspendLayout();
+            this.panelSummary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClienteCuentaCorriente)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.panelVer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelPrincipal
@@ -52,12 +64,179 @@
             this.panelPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelPrincipal.Controls.Add(this.panelSummary);
+            this.panelPrincipal.Controls.Add(this.dgvClienteCuentaCorriente);
             this.panelPrincipal.Controls.Add(this.panelFooter);
-            this.panelPrincipal.Controls.Add(this.gridControl1);
             this.panelPrincipal.Location = new System.Drawing.Point(12, 3);
             this.panelPrincipal.Name = "panelPrincipal";
             this.panelPrincipal.Size = new System.Drawing.Size(1091, 553);
             this.panelPrincipal.TabIndex = 83;
+            // 
+            // panelSummary
+            // 
+            this.panelSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelSummary.Controls.Add(this.lblSaldo);
+            this.panelSummary.Controls.Add(this.lblSaldoLegend);
+            this.panelSummary.Controls.Add(this.lblPago4);
+            this.panelSummary.Controls.Add(this.lblPago4Legend);
+            this.panelSummary.Controls.Add(this.lblPago3);
+            this.panelSummary.Controls.Add(this.lblPago3Legend);
+            this.panelSummary.Controls.Add(this.lblPago2);
+            this.panelSummary.Controls.Add(this.lblPago2Legend);
+            this.panelSummary.Controls.Add(this.lblPago1);
+            this.panelSummary.Controls.Add(this.lblPago1Legend);
+            this.panelSummary.Controls.Add(this.lblImpFactura);
+            this.panelSummary.Controls.Add(this.lblImpFacturaLegend);
+            this.panelSummary.Location = new System.Drawing.Point(13, 378);
+            this.panelSummary.Name = "panelSummary";
+            this.panelSummary.Size = new System.Drawing.Size(1065, 83);
+            this.panelSummary.TabIndex = 104;
+            // 
+            // lblSaldo
+            // 
+            this.lblSaldo.AutoSize = true;
+            this.lblSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldo.ForeColor = System.Drawing.Color.Red;
+            this.lblSaldo.Location = new System.Drawing.Point(938, 44);
+            this.lblSaldo.Name = "lblSaldo";
+            this.lblSaldo.Size = new System.Drawing.Size(66, 17);
+            this.lblSaldo.TabIndex = 113;
+            this.lblSaldo.Text = "lblSaldo";
+            // 
+            // lblSaldoLegend
+            // 
+            this.lblSaldoLegend.AutoSize = true;
+            this.lblSaldoLegend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSaldoLegend.Location = new System.Drawing.Point(938, 17);
+            this.lblSaldoLegend.Name = "lblSaldoLegend";
+            this.lblSaldoLegend.Size = new System.Drawing.Size(49, 17);
+            this.lblSaldoLegend.TabIndex = 112;
+            this.lblSaldoLegend.Text = "Saldo";
+            // 
+            // lblPago4
+            // 
+            this.lblPago4.AutoSize = true;
+            this.lblPago4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago4.ForeColor = System.Drawing.Color.Red;
+            this.lblPago4.Location = new System.Drawing.Point(792, 44);
+            this.lblPago4.Name = "lblPago4";
+            this.lblPago4.Size = new System.Drawing.Size(71, 17);
+            this.lblPago4.TabIndex = 111;
+            this.lblPago4.Text = "lblPago4";
+            // 
+            // lblPago4Legend
+            // 
+            this.lblPago4Legend.AutoSize = true;
+            this.lblPago4Legend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago4Legend.Location = new System.Drawing.Point(792, 17);
+            this.lblPago4Legend.Name = "lblPago4Legend";
+            this.lblPago4Legend.Size = new System.Drawing.Size(59, 17);
+            this.lblPago4Legend.TabIndex = 110;
+            this.lblPago4Legend.Text = "Pago 4";
+            // 
+            // lblPago3
+            // 
+            this.lblPago3.AutoSize = true;
+            this.lblPago3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago3.ForeColor = System.Drawing.Color.Red;
+            this.lblPago3.Location = new System.Drawing.Point(646, 44);
+            this.lblPago3.Name = "lblPago3";
+            this.lblPago3.Size = new System.Drawing.Size(71, 17);
+            this.lblPago3.TabIndex = 109;
+            this.lblPago3.Text = "lblPago3";
+            // 
+            // lblPago3Legend
+            // 
+            this.lblPago3Legend.AutoSize = true;
+            this.lblPago3Legend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago3Legend.Location = new System.Drawing.Point(646, 17);
+            this.lblPago3Legend.Name = "lblPago3Legend";
+            this.lblPago3Legend.Size = new System.Drawing.Size(59, 17);
+            this.lblPago3Legend.TabIndex = 108;
+            this.lblPago3Legend.Text = "Pago 3";
+            // 
+            // lblPago2
+            // 
+            this.lblPago2.AutoSize = true;
+            this.lblPago2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago2.ForeColor = System.Drawing.Color.Red;
+            this.lblPago2.Location = new System.Drawing.Point(472, 44);
+            this.lblPago2.Name = "lblPago2";
+            this.lblPago2.Size = new System.Drawing.Size(71, 17);
+            this.lblPago2.TabIndex = 107;
+            this.lblPago2.Text = "lblPago2";
+            // 
+            // lblPago2Legend
+            // 
+            this.lblPago2Legend.AutoSize = true;
+            this.lblPago2Legend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago2Legend.Location = new System.Drawing.Point(472, 17);
+            this.lblPago2Legend.Name = "lblPago2Legend";
+            this.lblPago2Legend.Size = new System.Drawing.Size(59, 17);
+            this.lblPago2Legend.TabIndex = 106;
+            this.lblPago2Legend.Text = "Pago 2";
+            // 
+            // lblPago1
+            // 
+            this.lblPago1.AutoSize = true;
+            this.lblPago1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago1.ForeColor = System.Drawing.Color.Red;
+            this.lblPago1.Location = new System.Drawing.Point(259, 44);
+            this.lblPago1.Name = "lblPago1";
+            this.lblPago1.Size = new System.Drawing.Size(71, 17);
+            this.lblPago1.TabIndex = 105;
+            this.lblPago1.Text = "lblPago1";
+            // 
+            // lblPago1Legend
+            // 
+            this.lblPago1Legend.AutoSize = true;
+            this.lblPago1Legend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPago1Legend.Location = new System.Drawing.Point(259, 17);
+            this.lblPago1Legend.Name = "lblPago1Legend";
+            this.lblPago1Legend.Size = new System.Drawing.Size(59, 17);
+            this.lblPago1Legend.TabIndex = 104;
+            this.lblPago1Legend.Text = "Pago 1";
+            // 
+            // lblImpFactura
+            // 
+            this.lblImpFactura.AutoSize = true;
+            this.lblImpFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImpFactura.ForeColor = System.Drawing.Color.Red;
+            this.lblImpFactura.Location = new System.Drawing.Point(15, 44);
+            this.lblImpFactura.Name = "lblImpFactura";
+            this.lblImpFactura.Size = new System.Drawing.Size(105, 17);
+            this.lblImpFactura.TabIndex = 103;
+            this.lblImpFactura.Text = "lblImpFactura";
+            // 
+            // lblImpFacturaLegend
+            // 
+            this.lblImpFacturaLegend.AutoSize = true;
+            this.lblImpFacturaLegend.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImpFacturaLegend.Location = new System.Drawing.Point(15, 17);
+            this.lblImpFacturaLegend.Name = "lblImpFacturaLegend";
+            this.lblImpFacturaLegend.Size = new System.Drawing.Size(98, 17);
+            this.lblImpFacturaLegend.TabIndex = 102;
+            this.lblImpFacturaLegend.Text = "Imp. Factura";
+            // 
+            // dgvClienteCuentaCorriente
+            // 
+            this.dgvClienteCuentaCorriente.AllowUserToAddRows = false;
+            this.dgvClienteCuentaCorriente.AllowUserToResizeRows = false;
+            this.dgvClienteCuentaCorriente.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvClienteCuentaCorriente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClienteCuentaCorriente.Location = new System.Drawing.Point(13, 9);
+            this.dgvClienteCuentaCorriente.MultiSelect = false;
+            this.dgvClienteCuentaCorriente.Name = "dgvClienteCuentaCorriente";
+            this.dgvClienteCuentaCorriente.RowHeadersWidth = 51;
+            this.dgvClienteCuentaCorriente.RowTemplate.Height = 24;
+            this.dgvClienteCuentaCorriente.Size = new System.Drawing.Size(1065, 363);
+            this.dgvClienteCuentaCorriente.TabIndex = 89;
+            this.dgvClienteCuentaCorriente.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvClienteCuentaCorriente_CellBeginEdit);
+            this.dgvClienteCuentaCorriente.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClienteCuentaCorriente_CellEndEdit);
+            this.dgvClienteCuentaCorriente.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvClienteCuentaCorriente_EditingControlShowing);
             // 
             // panelFooter
             // 
@@ -98,7 +277,7 @@
             this.rdTodos.TabStop = true;
             this.rdTodos.Text = "TODAS";
             this.rdTodos.UseVisualStyleBackColor = true;
-            this.rdTodos.CheckedChanged += new System.EventHandler(this.rdTodos_CheckedChanged);
+            this.rdTodos.Click += new System.EventHandler(this.rdTodos_Click);
             // 
             // rdDeuda
             // 
@@ -113,7 +292,7 @@
             this.rdDeuda.TabStop = true;
             this.rdDeuda.Text = "ADEUDADAS";
             this.rdDeuda.UseVisualStyleBackColor = true;
-            this.rdDeuda.CheckedChanged += new System.EventHandler(this.rdDeuda_CheckedChanged);
+            this.rdDeuda.Click += new System.EventHandler(this.rdDeuda_Click);
             // 
             // btnEliminarFila
             // 
@@ -208,32 +387,6 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // gridControl1
-            // 
-            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControl1.Location = new System.Drawing.Point(13, 9);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1065, 452);
-            this.gridControl1.TabIndex = 87;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            this.gridControl1.EditorKeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridControl1_EditorKeyPress);
-            // 
-            // gridView1
-            // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
-            this.gridView1.OptionsView.ShowFooter = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
-            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
-            // 
             // frmCliente_Cuenta_Corriente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -245,13 +398,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCliente_Cuenta_Corriente";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCliente_Cuenta_Corriente_FormClosing);
             this.panelPrincipal.ResumeLayout(false);
+            this.panelSummary.ResumeLayout(false);
+            this.panelSummary.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClienteCuentaCorriente)).EndInit();
             this.panelFooter.ResumeLayout(false);
             this.panelVer.ResumeLayout(false);
             this.panelVer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -260,8 +413,6 @@
 
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Panel panelFooter;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnGenerarReporte;
@@ -270,5 +421,19 @@
         private System.Windows.Forms.Panel panelVer;
         private System.Windows.Forms.RadioButton rdTodos;
         private System.Windows.Forms.RadioButton rdDeuda;
+        private System.Windows.Forms.Panel panelSummary;
+        private System.Windows.Forms.Label lblSaldo;
+        private System.Windows.Forms.Label lblSaldoLegend;
+        private System.Windows.Forms.Label lblPago4;
+        private System.Windows.Forms.Label lblPago4Legend;
+        private System.Windows.Forms.Label lblPago3;
+        private System.Windows.Forms.Label lblPago3Legend;
+        private System.Windows.Forms.Label lblPago2;
+        private System.Windows.Forms.Label lblPago2Legend;
+        private System.Windows.Forms.Label lblPago1;
+        private System.Windows.Forms.Label lblPago1Legend;
+        private System.Windows.Forms.Label lblImpFactura;
+        private System.Windows.Forms.Label lblImpFacturaLegend;
+        private System.Windows.Forms.DataGridView dgvClienteCuentaCorriente;
     }
 }

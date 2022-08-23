@@ -65,7 +65,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNroCopias = new System.Windows.Forms.TextBox();
             this.btnEliminarFactura = new System.Windows.Forms.Button();
-            this.btnDropDownButton = new DevExpress.XtraEditors.DropDownButton();
+            this.popupMenu = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturas)).BeginInit();
             this.panelBusqueda2.SuspendLayout();
             this.SuspendLayout();
@@ -421,7 +421,7 @@
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(377, 678);
+            this.label20.Location = new System.Drawing.Point(444, 678);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(88, 17);
             this.label20.TabIndex = 115;
@@ -432,7 +432,7 @@
             this.cbImpresoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbImpresoras.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbImpresoras.FormattingEnabled = true;
-            this.cbImpresoras.Location = new System.Drawing.Point(379, 698);
+            this.cbImpresoras.Location = new System.Drawing.Point(446, 698);
             this.cbImpresoras.Name = "cbImpresoras";
             this.cbImpresoras.Size = new System.Drawing.Size(366, 24);
             this.cbImpresoras.TabIndex = 114;
@@ -442,7 +442,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(759, 678);
+            this.label2.Location = new System.Drawing.Point(826, 678);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 17);
             this.label2.TabIndex = 117;
@@ -451,7 +451,7 @@
             // txtNroCopias
             // 
             this.txtNroCopias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNroCopias.Location = new System.Drawing.Point(762, 701);
+            this.txtNroCopias.Location = new System.Drawing.Point(829, 701);
             this.txtNroCopias.MaxLength = 2;
             this.txtNroCopias.Name = "txtNroCopias";
             this.txtNroCopias.Size = new System.Drawing.Size(39, 22);
@@ -467,7 +467,7 @@
             this.btnEliminarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.IndianRed;
             this.btnEliminarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarFactura.ForeColor = System.Drawing.Color.White;
-            this.btnEliminarFactura.Location = new System.Drawing.Point(199, 684);
+            this.btnEliminarFactura.Location = new System.Drawing.Point(278, 681);
             this.btnEliminarFactura.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminarFactura.Name = "btnEliminarFactura";
             this.btnEliminarFactura.Size = new System.Drawing.Size(129, 42);
@@ -476,26 +476,24 @@
             this.btnEliminarFactura.UseVisualStyleBackColor = false;
             this.btnEliminarFactura.Click += new System.EventHandler(this.btnEliminarFactura_Click);
             // 
-            // btnDropDownButton
+            // popupMenu
             // 
-            this.btnDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDropDownButton.Appearance.BackColor = System.Drawing.Color.Firebrick;
-            this.btnDropDownButton.Appearance.Options.UseBackColor = true;
-            this.btnDropDownButton.AppearanceHovered.BackColor = System.Drawing.Color.IndianRed;
-            this.btnDropDownButton.AppearanceHovered.Options.UseBackColor = true;
-            this.btnDropDownButton.Location = new System.Drawing.Point(13, 684);
-            this.btnDropDownButton.Margin = new System.Windows.Forms.Padding(12);
-            this.btnDropDownButton.Name = "btnDropDownButton";
-            this.btnDropDownButton.Size = new System.Drawing.Size(170, 42);
-            this.btnDropDownButton.TabIndex = 120;
-            this.btnDropDownButton.Text = "Elija una opcion";
+            this.popupMenu.BackColor = System.Drawing.Color.Firebrick;
+            this.popupMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.popupMenu.ForeColor = System.Drawing.Color.White;
+            this.popupMenu.FormattingEnabled = true;
+            this.popupMenu.Location = new System.Drawing.Point(13, 690);
+            this.popupMenu.Name = "popupMenu";
+            this.popupMenu.Size = new System.Drawing.Size(235, 24);
+            this.popupMenu.TabIndex = 128;
+            this.popupMenu.SelectedIndexChanged += new System.EventHandler(this.popupMenu_SelectedIndexChanged);
             // 
             // frmFacturaGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1202, 735);
-            this.Controls.Add(this.btnDropDownButton);
+            this.Controls.Add(this.popupMenu);
             this.Controls.Add(this.btnEliminarFactura);
             this.Controls.Add(this.txtNroCopias);
             this.Controls.Add(this.label2);
@@ -561,6 +559,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNroCopias;
         private System.Windows.Forms.Button btnEliminarFactura;
-        private DevExpress.XtraEditors.DropDownButton btnDropDownButton;
+        private System.Windows.Forms.ComboBox popupMenu;
     }
 }
