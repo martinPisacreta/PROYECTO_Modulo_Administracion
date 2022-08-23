@@ -68,7 +68,7 @@ namespace Modulo_Administracion.Logica
         {
 
             Modulo_AdministracionContext db = new Modulo_AdministracionContext();
-          
+
 
             using (DbContextTransaction sqlTransaction = db.Database.BeginTransaction())
             {
@@ -80,7 +80,7 @@ namespace Modulo_Administracion.Logica
                     db.SaveChanges();
 
                     sqlTransaction.Commit();
-                   
+
 
                     return true;
                 }

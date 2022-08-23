@@ -116,7 +116,7 @@ namespace Modulo_Administracion.Vista
                     //panel2.Enabled = false;
                 }
 
-              
+
 
 
                 String pkInstalledPrinters;
@@ -2292,7 +2292,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-     
+
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {

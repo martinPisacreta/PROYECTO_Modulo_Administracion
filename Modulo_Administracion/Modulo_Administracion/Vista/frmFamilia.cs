@@ -25,7 +25,7 @@ namespace Modulo_Administracion
         decimal algoritmo7;
         decimal algoritmo8;
         decimal algoritmo9;
-   
+
 
         private void dgvFamilia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -103,7 +103,7 @@ namespace Modulo_Administracion
                 algoritmo7 = 1;
                 algoritmo8 = 1;
                 algoritmo9 = 1;
-               
+
 
             }
             catch (Exception ex)

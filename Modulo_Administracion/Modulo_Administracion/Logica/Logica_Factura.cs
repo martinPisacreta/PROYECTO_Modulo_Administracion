@@ -18,8 +18,8 @@ namespace Modulo_Administracion.Logica
         public static factura alta_factura(factura factura)
         {
 
-          
-          
+
+
             Int64 nro_factura;
 
             Modulo_AdministracionContext db = new Modulo_AdministracionContext();
@@ -193,7 +193,7 @@ namespace Modulo_Administracion.Logica
 
         public static factura modificar_factura(factura factura)
         {
-           
+
             Modulo_AdministracionContext db = new Modulo_AdministracionContext();
             using (DbContextTransaction dbContextTransaction = db.Database.BeginTransaction())
             {

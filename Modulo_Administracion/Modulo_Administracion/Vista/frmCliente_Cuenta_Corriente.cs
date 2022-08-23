@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Modulo_Administracion.Vista
@@ -29,7 +28,7 @@ namespace Modulo_Administracion.Vista
                 iniciar();
 
                 DataTable dt = buscar_movimientos_CCC();
-  
+
                 tiposFactura_Todos = Logica_Tipo_Factura.loadComboBox_cbTipoFactura_relacionado_a_CCC(false);
                 tiposFactura_de_un_Nuevo_Movimiento = Logica_Tipo_Factura.loadComboBox_cbTipoFactura_relacionado_a_CCC(true);
 
@@ -46,7 +45,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-       
+
 
 
         private void iniciar()
@@ -74,7 +73,7 @@ namespace Modulo_Administracion.Vista
             {
 
 
-               
+
 
                 if (rdDeuda.Checked == true)
                 {
@@ -90,7 +89,7 @@ namespace Modulo_Administracion.Vista
 
                 frm_Espere.Show();
 
-               
+
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\" + "CUENTA CORRIENTE " + cliente.nombre_fantasia + ".pdf";
 
                 DataTable dt = (DataTable)dgvClienteCuentaCorriente.DataSource;
@@ -100,8 +99,8 @@ namespace Modulo_Administracion.Vista
                 Cursor.Current = Cursors.Default;
 
                 MessageBox.Show("PDF generado en " + path, "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-              
+
+
             }
             catch (Exception ex)
             {
@@ -117,7 +116,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-       
+
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -327,8 +326,8 @@ namespace Modulo_Administracion.Vista
 
         }
 
-       
-     
+
+
         private void Valido(DataGridView gridView)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -348,13 +347,13 @@ namespace Modulo_Administracion.Vista
                             throw new Exception("Debe cargar la fecha de la factura");
                         }
 
-                        
+
                         if (dgvClienteCuentaCorriente.Rows[i].Cells["Tipo_Factura"].Value.ToString() == "") //y el tipo de factura esta vacio...
                         {
                             dgvClienteCuentaCorriente.Rows[i].Cells["Tipo_Factura"].Selected = true;
                             throw new Exception("Debe cargar el tipo de factura");
                         }
-                        
+
                         if (dgvClienteCuentaCorriente.Rows[i].Cells["Nro_Factura"].Value.ToString() == "") //y el nro de factura esta vacio...
                         {
                             dgvClienteCuentaCorriente.Rows[i].Cells["Nro_Factura"].Selected = true;
@@ -434,27 +433,27 @@ namespace Modulo_Administracion.Vista
 
                         cliente_cuenta_corriente.id_cliente = cliente.id_cliente;
 
-                        cliente_cuenta_corriente.id_factura = null; 
+                        cliente_cuenta_corriente.id_factura = null;
                         if (dgvClienteCuentaCorriente.Rows[i].Cells["Id_factura"].Value.ToString() != "")
                         {
                             cliente_cuenta_corriente.id_factura = Convert.ToInt32(dgvClienteCuentaCorriente.Rows[i].Cells["Id_factura"].Value.ToString());
                         }
 
                         cliente_cuenta_corriente.fecha_factura_vieja = null;
-                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Fecha"].Value.ToString() != "") 
+                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Fecha"].Value.ToString() != "")
                         {
                             cliente_cuenta_corriente.fecha_factura_vieja = Convert.ToDateTime(dgvClienteCuentaCorriente.Rows[i].Cells["Fecha"].Value.ToString());
                         }
 
 
                         cliente_cuenta_corriente.nro_factura_vieja = null;
-                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Nro_Factura"].Value.ToString() != "") 
+                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Nro_Factura"].Value.ToString() != "")
                         {
                             cliente_cuenta_corriente.nro_factura_vieja = Convert.ToInt64(dgvClienteCuentaCorriente.Rows[i].Cells["Nro_Factura"].Value.ToString());
                         }
 
                         cliente_cuenta_corriente.cod_tipo_factura_vieja = null;
-                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Tipo_Factura"].Value.ToString() != "") 
+                        if (dgvClienteCuentaCorriente.Rows[i].Cells["Tipo_Factura"].Value.ToString() != "")
                         {
                             cliente_cuenta_corriente.cod_tipo_factura_vieja = convert_tipoFactura_de_STRING_a_INT(dgvClienteCuentaCorriente.Rows[i].Cells["Tipo_Factura"].Value.ToString());
                         }
@@ -464,7 +463,7 @@ namespace Modulo_Administracion.Vista
                     {
                         cliente_cuenta_corriente.id_cliente_cuenta_corriente = Convert.ToInt32(dgvClienteCuentaCorriente.Rows[i].Cells["Id"].Value.ToString());
                         cliente_cuenta_corriente.id_cliente = cliente.id_cliente;
-                        cliente_cuenta_corriente.id_factura = Convert.ToInt32(dgvClienteCuentaCorriente.Rows[i].Cells["Id_factura"].Value.ToString()); 
+                        cliente_cuenta_corriente.id_factura = Convert.ToInt32(dgvClienteCuentaCorriente.Rows[i].Cells["Id_factura"].Value.ToString());
 
                         cliente_cuenta_corriente.fecha_factura_vieja = null;
                         cliente_cuenta_corriente.nro_factura_vieja = null;
@@ -472,19 +471,19 @@ namespace Modulo_Administracion.Vista
                     }
 
                     cliente_cuenta_corriente.imp_factura = null;
-                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Imp_Factura"].Value.ToString() != "") 
+                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Imp_Factura"].Value.ToString() != "")
                     {
                         cliente_cuenta_corriente.imp_factura = Convert.ToDecimal(dgvClienteCuentaCorriente.Rows[i].Cells["Imp_Factura"].Value.ToString());
                     }
 
                     cliente_cuenta_corriente.pago_1 = null;
-                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Pago_1"].Value.ToString() != "") 
+                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Pago_1"].Value.ToString() != "")
                     {
                         cliente_cuenta_corriente.pago_1 = Convert.ToDecimal(dgvClienteCuentaCorriente.Rows[i].Cells["Pago_1"].Value.ToString());
                     }
 
                     cliente_cuenta_corriente.pago_1_fecha = null;
-                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Fecha_Pago_1"].Value.ToString() != "") 
+                    if (dgvClienteCuentaCorriente.Rows[i].Cells["Fecha_Pago_1"].Value.ToString() != "")
                     {
                         cliente_cuenta_corriente.pago_1_fecha = Convert.ToDateTime(dgvClienteCuentaCorriente.Rows[i].Cells["Fecha_Pago_1"].Value.ToString());
                     }
@@ -561,7 +560,7 @@ namespace Modulo_Administracion.Vista
 
         }
 
-       
+
 
         private void btnAgregarMovimiento_Click(object sender, EventArgs e)
         {
@@ -582,7 +581,7 @@ namespace Modulo_Administracion.Vista
                 DataRow dr = dt.NewRow();
                 dt.Rows.Add(dr);
                 cargar_dgv(dt);
-               
+
             }
             catch (Exception ex)
             {
@@ -644,8 +643,8 @@ namespace Modulo_Administracion.Vista
             try
             {
                 string id = dgvClienteCuentaCorriente.Rows[e.RowIndex].Cells["Id"].Value.ToString();
-                string tipo_factura = dgvClienteCuentaCorriente.Rows[e.RowIndex].Cells["Tipo_Factura"].Value.ToString(); 
-                string fecha = dgvClienteCuentaCorriente.Rows[e.RowIndex].Cells["Fecha"].Value.ToString(); 
+                string tipo_factura = dgvClienteCuentaCorriente.Rows[e.RowIndex].Cells["Tipo_Factura"].Value.ToString();
+                string fecha = dgvClienteCuentaCorriente.Rows[e.RowIndex].Cells["Fecha"].Value.ToString();
 
                 if (id != "" && dgvClienteCuentaCorriente.Columns[e.ColumnIndex].Name == "Id")
                 {
@@ -689,11 +688,11 @@ namespace Modulo_Administracion.Vista
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
 
 
 
-      
+
+
 
         private void rdDeuda_Click(object sender, EventArgs e)
         {
@@ -723,7 +722,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-       
+
 
         private void cargar_dgv(DataTable dt)
         {
@@ -766,7 +765,7 @@ namespace Modulo_Administracion.Vista
                     else //SINO ES UN MOVIMIENTO EXISTENTE
                     {
                         colTipoFactura_cell.DataSource = tiposFactura_Todos; //Y CARGO TODOS LOS TIPOS FACTURA
-                        
+
                     }
 
                     //SETEO colTipoFactura_cell EN COLUMNA [Tipo_Factura] DEL ROW QUE ESTOY
@@ -811,7 +810,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-       
+
 
         //funcion que indica que "," y "." es lo mismo
         private void dgvClienteCuentaCorriente_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1025,8 +1024,8 @@ namespace Modulo_Administracion.Vista
             }
         }
 
- 
 
-     
+
+
     }
 }

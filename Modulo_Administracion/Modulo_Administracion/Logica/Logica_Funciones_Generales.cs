@@ -6,7 +6,6 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -158,7 +157,7 @@ namespace Modulo_Administracion.Logica
             try
             {
                 DataSet ds = null;
-             
+
 
                 //mato los procesos que sean igual a FOXITREADER
                 var resultado = from item in System.Diagnostics.Process.GetProcesses()
@@ -171,14 +170,14 @@ namespace Modulo_Administracion.Logica
                 }
 
 
-             
+
                 //genero 
                 ds = Logica_Factura.buscar_factura_print(factura.id_factura);
 
                 //llamo al formulario pero no es necesario que se abra porque solamente quiero generar el PDF
                 frmReporteFactura form = new frmReporteFactura(ds.Tables[0], factura.path_factura);
                 return factura.path_factura;
-                
+
 
             }
             catch (Exception ex)
@@ -193,7 +192,7 @@ namespace Modulo_Administracion.Logica
             try
             {
                 //si ya existe no hago nada , sino lo agrego
-                
+
 
                 //mato los procesos que sean igual a FOXITREADER
                 var resultado = from item in System.Diagnostics.Process.GetProcesses()

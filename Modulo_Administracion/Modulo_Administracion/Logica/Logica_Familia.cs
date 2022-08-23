@@ -139,7 +139,7 @@ namespace Modulo_Administracion.Logica
 
                 try
                 {
-                   
+
 
                     familia familia_db = db.familia.FirstOrDefault(f => f.id_tabla_familia == familia.id_tabla_familia);
 
@@ -155,7 +155,7 @@ namespace Modulo_Administracion.Logica
 
                     db.SaveChanges();
                     dbContextTransaction.Commit();
-                  
+
 
                     return true;
                 }

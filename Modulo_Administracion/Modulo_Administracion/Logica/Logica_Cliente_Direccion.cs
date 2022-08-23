@@ -53,7 +53,7 @@ namespace Modulo_Administracion.Logica
 
         public static bool modificar_clienteDireccion(cliente_dir direccion, Modulo_AdministracionContext db)
         {
-          
+
             try
             {
 
@@ -98,7 +98,7 @@ namespace Modulo_Administracion.Logica
 
                 }
 
-            
+
 
                 return true;
             }

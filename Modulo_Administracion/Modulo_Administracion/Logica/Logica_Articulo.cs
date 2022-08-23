@@ -331,7 +331,7 @@ namespace Modulo_Administracion.Logica
             DataSet ds = new DataSet();
             DataRow row;
             Modulo_AdministracionContext db = new Modulo_AdministracionContext();
-      
+
             var txtBusquedaSplit = txtBusqueda.Split(' ').ToList();
 
             //CANTIDAD TOTAL ARTICULOS
@@ -353,8 +353,8 @@ namespace Modulo_Administracion.Logica
             //SKIP - TAKE
             var articulos = db.articulo
                               .Join(db.familia,
-                                  articulo => articulo.id_tabla_familia,   
-                                  familia => familia.id_tabla_familia, 
+                                  articulo => articulo.id_tabla_familia,
+                                  familia => familia.id_tabla_familia,
                                   (articulo, familia) => new { Articulo = articulo, Familia = familia })
                               .Where(articulo_familia =>
                                         articulo_familia.Articulo.fec_baja == null && //ARTICULOS ACTIVOS
@@ -362,7 +362,7 @@ namespace Modulo_Administracion.Logica
                                                       (txtBusquedaSplit.All(aux => (articulo_familia.Articulo.codigo_articulo_marca.ToUpper() + " " + articulo_familia.Articulo.codigo_articulo + " " + articulo_familia.Articulo.descripcion_articulo).Contains(aux.ToUpper()))) //busco por codigo_articulo_marca + codigo_articulo + descripcion_articulo
                                         )
                                     )
-                               .Select(articulo_familia => new  
+                               .Select(articulo_familia => new
                                {
                                    codigo_articulo_marca = articulo_familia.Articulo.codigo_articulo_marca,
                                    codigo_articulo = articulo_familia.Articulo.codigo_articulo,
@@ -386,7 +386,7 @@ namespace Modulo_Administracion.Logica
                                .OrderBy(articulo_familia => articulo_familia.id_orden)
                                .ToList();
 
-         
+
 
             DataTable dtDatos = new DataTable();
             dtDatos.Columns.Add("codigo_articulo_marca");
@@ -425,7 +425,7 @@ namespace Modulo_Administracion.Logica
                 }
             }
 
-           
+
             ds.Tables.Add(dtDatos);
             return ds;
         }
@@ -486,7 +486,7 @@ namespace Modulo_Administracion.Logica
         {
 
 
-         
+
             try
             {
                 foreach (articulo articulo in lista_articulo)
@@ -496,7 +496,7 @@ namespace Modulo_Administracion.Logica
                         throw new Exception("Error al dar de alta los articulos");
                     }
                 }
-                
+
 
                 return true;
             }

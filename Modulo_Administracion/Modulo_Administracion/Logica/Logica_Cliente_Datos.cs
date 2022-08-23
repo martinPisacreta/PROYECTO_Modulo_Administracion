@@ -40,7 +40,7 @@ namespace Modulo_Administracion.Logica
         public static bool modificar_clienteDatos(cliente_datos dato, Modulo_AdministracionContext db)
         {
 
-        
+
             try
             {
                 if (dato.sn_activo == 0)
@@ -74,7 +74,7 @@ namespace Modulo_Administracion.Logica
 
                 }
 
-              
+
 
                 return true;
             }

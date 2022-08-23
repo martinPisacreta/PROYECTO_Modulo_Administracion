@@ -1,14 +1,7 @@
 ﻿using Microsoft.Reporting.WinForms;
-using Modulo_Administracion.Logica;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Modulo_Administracion.Vista
@@ -17,7 +10,7 @@ namespace Modulo_Administracion.Vista
     {
         private DataTable dt;
         private string path_factura;
-        public frmReporteClienteCuentaCorriente(DataTable _dt,string _path_factura)
+        public frmReporteClienteCuentaCorriente(DataTable _dt, string _path_factura)
         {
             try
             {
@@ -43,17 +36,17 @@ namespace Modulo_Administracion.Vista
                     stream.Write(Bytes, 0, Bytes.Length);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-          
+
         }
 
         private void frmReporteFactura_Load(object sender, EventArgs e)
         {
 
-           
+
 
         }
     }

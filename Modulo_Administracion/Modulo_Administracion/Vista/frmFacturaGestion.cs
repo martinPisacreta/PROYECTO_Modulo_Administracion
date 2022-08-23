@@ -16,7 +16,7 @@ namespace Modulo_Administracion.Vista
         factura factura = null;
         private int Accion;
 
-   
+
         string opcion_2_dropDownButton = "Ver Factura";
         string opcion_3_dropDownButton = "Generar PDF";
         string opcion_4_dropDownButton = "Generar PDF e imprimir";
@@ -587,7 +587,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-      
+
 
 
 
@@ -802,7 +802,7 @@ namespace Modulo_Administracion.Vista
 
         private void popupMenu_SelectedIndexChanged(object sender, EventArgs e)
         {
-             frmEspere frm_Espere = new frmEspere();
+            frmEspere frm_Espere = new frmEspere();
 
             try
             {
@@ -816,14 +816,14 @@ namespace Modulo_Administracion.Vista
                         Cursor.Current = Cursors.WaitCursor;
                         frm_Espere.Show();
 
-                       
+
                         factura _factura = Logica_Factura.buscar_factura(Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[0].Value));
                         Process.Start(_factura.path_factura);
 
                         frm_Espere.Hide();
                         Cursor.Current = Cursors.Default;
-                        
-                       
+
+
                         //}
                     }
                     else if (dgvFacturas.SelectedRows.Count == 0)

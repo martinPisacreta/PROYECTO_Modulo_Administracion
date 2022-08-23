@@ -39,13 +39,13 @@ namespace Modulo_Administracion.Vista
         string opcion_2_dropDownButton = "Grabar y generar PDF";
         string opcion_3_dropDownButton = "Grabar , generar PDF e imprimir";
 
-     
+
 
         int nro_redondeo = 2;
 
         public new Form ParentForm { get; set; }
 
-   
+
         public frmFactura(factura _factura)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -56,12 +56,12 @@ namespace Modulo_Administracion.Vista
                 factura = _factura;
 
 
-         
-
-            
 
 
-                
+
+
+
+
 
                 dgvFactura.Rows.Add(cantidad_filas_a_dataGridView);    //genero 50 lineas al dataGridView
 
@@ -1611,7 +1611,7 @@ namespace Modulo_Administracion.Vista
             {
                 if (dgvBusquedaArticulo.Rows.Count > 0)
                 {
-                    if(e.RowIndex >= 0)
+                    if (e.RowIndex >= 0)
                     {
                         if (factura.sn_emitida == 0) //si todavia no esta emitida la factura , ingreso aca 
                         {
@@ -2059,7 +2059,7 @@ namespace Modulo_Administracion.Vista
             }
         }
 
-    
+
 
 
 
@@ -2346,10 +2346,10 @@ namespace Modulo_Administracion.Vista
 
                 }
 
-              
+
                 DataSet ds = Logica_Articulo.buscar_articulos_activos(txtBusquedaArticulo.Text);
 
-                if(ds.Tables[1].Rows.Count == 0)
+                if (ds.Tables[1].Rows.Count == 0)
                 {
                     dgvBusquedaArticulo.DataSource = null;
                     throw new Exception("No hay registros con los filtros solicitados");
@@ -2362,7 +2362,7 @@ namespace Modulo_Administracion.Vista
 
                 }
                 dgvBusquedaArticulo.DataSource = ds.Tables[1]; //cargo en dgvBusquedaArticulo
-           
+
                 //OCULTO COLUMNAS DE dgvBusquedaArticulo
                 dgvBusquedaArticulo.Columns["precio_lista"].Visible = false;
                 dgvBusquedaArticulo.Columns["coeficiente"].Visible = false;
@@ -2373,7 +2373,7 @@ namespace Modulo_Administracion.Vista
                 dgvBusquedaArticulo.Columns["id_articulo"].Visible = false;
                 dgvBusquedaArticulo.Columns["id_orden"].Visible = false;
 
-               
+
 
                 form.Hide();
                 Cursor.Current = Cursors.Default;
@@ -2417,7 +2417,7 @@ namespace Modulo_Administracion.Vista
 
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
         }
     }
 }

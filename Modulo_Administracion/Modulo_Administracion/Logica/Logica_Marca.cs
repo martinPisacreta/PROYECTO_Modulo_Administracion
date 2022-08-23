@@ -107,7 +107,7 @@ namespace Modulo_Administracion.Logica
                 try
                 {
 
-                  
+
                     marca marca_db = db.marca.FirstOrDefault(f => f.id_tabla_marca == marca.id_tabla_marca);
                     marca_db.id_tabla_marca = marca.id_tabla_marca;
                     marca_db.id_marca = marca.id_marca;
@@ -129,7 +129,7 @@ namespace Modulo_Administracion.Logica
 
                     db.SaveChanges();
                     dbContextTransaction.Commit();
-                  
+
 
                     return true;
                 }

@@ -46,7 +46,7 @@ namespace Modulo_Administracion.Logica
         {
             try
             {
-                if(sn_agregar_movimiento == true) //VENGO A BUSCAR LOS DATOS DESDE "AGREGAR MOVIMIENTO" , ENTONCES SOLAMENTE VOY A PODER GENERAR LINEAS SIN COMPROBANTES FISICOS
+                if (sn_agregar_movimiento == true) //VENGO A BUSCAR LOS DATOS DESDE "AGREGAR MOVIMIENTO" , ENTONCES SOLAMENTE VOY A PODER GENERAR LINEAS SIN COMPROBANTES FISICOS
                 {
                     string[] dataComboBox = {
                                                 ttipo_factura_constantes.s_valor_factura_a_sin_comprobante,
@@ -72,7 +72,7 @@ namespace Modulo_Administracion.Logica
                                             };
                     return dataComboBox;
                 }
-               
+
             }
             catch (Exception ex)
             {

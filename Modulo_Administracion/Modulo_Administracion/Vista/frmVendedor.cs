@@ -385,7 +385,7 @@ namespace Modulo_Administracion
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-          
+
             try
             {
 

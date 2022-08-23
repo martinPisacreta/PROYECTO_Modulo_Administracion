@@ -88,7 +88,7 @@ namespace Modulo_Administracion.Logica
         public static bool eliminar_proveedorDatos(proveedor_datos dato, Modulo_AdministracionContext db)
         {
 
-          
+
             try
             {
 
@@ -97,7 +97,7 @@ namespace Modulo_Administracion.Logica
                 db.SaveChanges();
 
 
-               
+
 
                 return true;
             }
