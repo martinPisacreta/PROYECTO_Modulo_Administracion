@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Modulo_Administracion.Vista
@@ -14,7 +15,7 @@ namespace Modulo_Administracion.Vista
         cliente cliente;
         string[] tiposFactura_Todos;
         string[] tiposFactura_de_un_Nuevo_Movimiento;
-
+      
         public frmCliente_Cuenta_Corriente(cliente _cliente)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -987,12 +988,12 @@ namespace Modulo_Administracion.Vista
                 }
 
 
-                lblImpFactura.Text = _lblImpFactura.ToString("C");
-                lblPago1.Text = _lblPago1.ToString("C");
-                lblPago2.Text = _lblPago2.ToString("C");
-                lblPago3.Text = _lblPago3.ToString("C");
-                lblPago4.Text = _lblPago4.ToString("C");
-                lblSaldo.Text = _lblSaldo.ToString("C");
+                lblImpFactura.Text = _lblImpFactura.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
+                lblPago1.Text = _lblPago1.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
+                lblPago2.Text = _lblPago2.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
+                lblPago3.Text = _lblPago3.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
+                lblPago4.Text = _lblPago4.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
+                lblSaldo.Text = _lblSaldo.ToString("C", CultureInfo.GetCultureInfo("es-AR"));
 
             }
             catch (Exception ex)
