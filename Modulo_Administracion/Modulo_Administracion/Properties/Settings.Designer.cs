@@ -66,7 +66,8 @@ namespace Modulo_Administracion.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MAXI-PC;Initial Catalog=CarritoCompras;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MAXI-PC\\SQLEXPRESS;Initial Catalog=CarritoCompras;Integrated Security" +
+            "=True")]
         public string reporteFacturaConnectionString {
             get {
                 return ((string)(this["reporteFacturaConnectionString"]));
