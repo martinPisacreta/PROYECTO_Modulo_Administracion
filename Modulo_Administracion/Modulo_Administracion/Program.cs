@@ -15,7 +15,8 @@ namespace Modulo_Administracion
         public const int nro_copias = 2;
         public const string password = "123456";
 
-        public const string ruta_guardar_factura_pdf = @"\\MAXI-PC\Compartida\FACTURAS DEL DIA\";
+        public const string ruta_guardar_factura_pdf = @"\\MAXI-PC\Users\Windows 10\Desktop\Compartida\FACTURAS DEL DIA\";
+        public const string ruta_guardar_reporte_cliente_cuenta_corriente = @"\\MAXI-PC\Users\Windows 10\Desktop\Compartida\REPORTE CLIENTE CUENTA CORRIENTE\";
         //public const string ruta_guardar_factura_pdf = @"C:\Users\Martin\Desktop\";
         [STAThread]
 

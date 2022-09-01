@@ -91,7 +91,7 @@ namespace Modulo_Administracion.Vista
                 frm_Espere.Show();
 
 
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\" + "CUENTA CORRIENTE " + cliente.nombre_fantasia + ".pdf";
+                string path = Program.ruta_guardar_reporte_cliente_cuenta_corriente +  cliente.nombre_fantasia + DateTime.Now.ToString("yyyyMMdd") + ".pdf";
 
                 DataTable dt = (DataTable)dgvClienteCuentaCorriente.DataSource;
                 Logica_Funciones_Generales.generar_reporteClienteCuentaCorriente(dt, path);
