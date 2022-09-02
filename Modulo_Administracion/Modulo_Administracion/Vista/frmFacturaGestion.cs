@@ -710,7 +710,7 @@ namespace Modulo_Administracion.Vista
 
                             if (factura_db.path_factura != null) //si el archivo que quiero borrar , tiene path ...
                             {
-                                if (sn_file_bloqueado(factura_db.path_factura) == true) //y esta abierto ....
+                                if (sn_file_bloqueado(Program.ruta_guardar_factura_pdf +  factura_db.path_factura) == true) //y esta abierto ....
                                 {
                                     throw new Exception("Debe cerrar el PDF para que pueda ser eliminado");
                                 }
@@ -725,15 +725,15 @@ namespace Modulo_Administracion.Vista
                                     {
 
 
-                                        if (File.Exists(factura_db.path_factura))
+                                        if (File.Exists(Program.ruta_guardar_factura_pdf + factura_db.path_factura))
                                         {
                                             GC.Collect();
                                             GC.WaitForPendingFinalizers();
-                                            File.Delete(factura_db.path_factura);
+                                            File.Delete(Program.ruta_guardar_factura_pdf + factura_db.path_factura);
                                         }
 
 
-                                        if (File.Exists(factura_db.path_factura))
+                                        if (File.Exists(Program.ruta_guardar_factura_pdf + factura_db.path_factura))
                                         {
                                             bandera_warning = true;
                                             throw new Exception("Factura eliminada correctamente.\nPero no se pudo eliminar el PDF.\nPor favor eliminarlo manualmente.");
@@ -818,7 +818,7 @@ namespace Modulo_Administracion.Vista
 
 
                         factura _factura = Logica_Factura.buscar_factura(Convert.ToInt32(dgvFacturas.SelectedRows[0].Cells[0].Value));
-                        Process.Start(_factura.path_factura);
+                        Process.Start(Program.ruta_guardar_factura_pdf + _factura.path_factura);
 
                         frm_Espere.Hide();
                         Cursor.Current = Cursors.Default;

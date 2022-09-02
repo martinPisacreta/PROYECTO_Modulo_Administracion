@@ -105,7 +105,7 @@ namespace Modulo_Administracion.Logica
 
         public static string crear_path_a_partir_de_factura(factura factura)
         {
-            string FilePath = "";
+            string rutaFull_FilePath = "";
             cliente cliente = null;
 
             try
@@ -113,36 +113,37 @@ namespace Modulo_Administracion.Logica
                 string anio = factura.fecha.ToString("yyyy", CultureInfo.CreateSpecificCulture("es"));
                 if (anio == "2020")
                 {
-                    FilePath = Program.ruta_guardar_factura_pdf + "AÑO 2020";
+                    rutaFull_FilePath = Program.ruta_guardar_factura_pdf + "AÑO 2020";
                 }
                 else
                 {
-                    FilePath = Program.ruta_guardar_factura_pdf + anio;
-                    if (!Directory.Exists(FilePath))
+                    rutaFull_FilePath = Program.ruta_guardar_factura_pdf + anio;
+                    if (!Directory.Exists(rutaFull_FilePath))
                     {
-                        Directory.CreateDirectory(FilePath);
+                        Directory.CreateDirectory(rutaFull_FilePath);
                     }
                 }
 
                 string mes_en_letras = factura.fecha.ToString("MMMM", CultureInfo.CreateSpecificCulture("es"));
                 string mes_en_nro = factura.fecha.ToString("MM", CultureInfo.CreateSpecificCulture("es"));
-                FilePath = FilePath + @"\" + mes_en_letras;
-                if (!Directory.Exists(FilePath))
+                rutaFull_FilePath = rutaFull_FilePath + @"\" + mes_en_letras;
+                if (!Directory.Exists(rutaFull_FilePath))
                 {
-                    Directory.CreateDirectory(FilePath);
+                    Directory.CreateDirectory(rutaFull_FilePath);
                 }
 
                 string dia = factura.fecha.ToString("dd", CultureInfo.CreateSpecificCulture("es"));
-                FilePath = FilePath + @"\" + dia + "-" + mes_en_nro + "-" + anio;
-                if (!Directory.Exists(FilePath))
+                rutaFull_FilePath = rutaFull_FilePath + @"\" + dia + "-" + mes_en_nro + "-" + anio;
+                if (!Directory.Exists(rutaFull_FilePath))
                 {
-                    Directory.CreateDirectory(FilePath);
+                    Directory.CreateDirectory(rutaFull_FilePath);
                 }
 
                 cliente = Logica_Cliente.buscar_cliente(factura.id_cliente, null);
-                FilePath = FilePath + "\\" + cliente.nombre_fantasia + " - " + factura.ttipo_factura.letra + factura.nro_factura.ToString() + ".pdf";
+                rutaFull_FilePath = rutaFull_FilePath + "\\" + cliente.nombre_fantasia + " - " + factura.ttipo_factura.letra + factura.nro_factura.ToString() + ".pdf";
 
-                return FilePath;
+                string rutasRelativa_FilePath = rutaFull_FilePath.Replace(Program.ruta_guardar_factura_pdf,"");
+                return rutasRelativa_FilePath;
             }
             catch (Exception ex)
             {
@@ -175,8 +176,9 @@ namespace Modulo_Administracion.Logica
                 ds = Logica_Factura.buscar_factura_print(factura.id_factura);
 
                 //llamo al formulario pero no es necesario que se abra porque solamente quiero generar el PDF
-                frmReporteFactura form = new frmReporteFactura(ds.Tables[0], factura.path_factura);
-                return factura.path_factura;
+                string rutaFull_FilePath = Program.ruta_guardar_factura_pdf + factura.path_factura;
+                frmReporteFactura form = new frmReporteFactura(ds.Tables[0], rutaFull_FilePath);
+                return rutaFull_FilePath;
 
 
             }
