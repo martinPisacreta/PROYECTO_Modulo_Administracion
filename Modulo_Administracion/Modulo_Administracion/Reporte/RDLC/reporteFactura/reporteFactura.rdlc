@@ -694,7 +694,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=Globals!PageNumber</Value>
+                          <Value>=Globals!PageNumber &amp; "/" &amp;  Globals!TotalPages</Value>
                           <Style>
                             <FontFamily>Segoe UI</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -702,7 +702,9 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style />
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox25</rd:DefaultName>
@@ -732,12 +734,14 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style />
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox26</rd:DefaultName>
                   <Top>1.10814cm</Top>
-                  <Left>14.51644cm</Left>
+                  <Left>14.49527cm</Left>
                   <Height>0.49944cm</Height>
                   <Width>2.7261cm</Width>
                   <ZIndex>3</ZIndex>
@@ -763,12 +767,14 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style />
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox26</rd:DefaultName>
                   <Top>2.11294cm</Top>
-                  <Left>14.71079cm</Left>
+                  <Left>14.68962cm</Left>
                   <Height>0.49944cm</Height>
                   <Width>2.5cm</Width>
                   <ZIndex>4</ZIndex>
