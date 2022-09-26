@@ -281,8 +281,9 @@ namespace Modulo_Administracion
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                Valido();
+                
                 SeteoObjeto();
+                Valido();
                 if (Accion == 1)
                 {
                     if (tipo == 1)
@@ -382,6 +383,12 @@ namespace Modulo_Administracion
                                 txtDato.Focus();
                                 throw new Exception("Cuit incorrecto");
                             }
+                            if (Logica_Funciones_Generales.cuit_existente(tipo,proveedor_datos.id_proveedor,txtDato.Text) == false)
+                            {
+                                txtDato.Text = "";
+                                txtDato.Focus();
+                                throw new Exception("Cuit ingresado ya existe en otro proveedor activo");
+                            }
                         }
                     }
                     else if (proveedor_datos.cod_tipo_dato == 13) // DNI
@@ -417,6 +424,12 @@ namespace Modulo_Administracion
                                 txtDato.Text = "";
                                 txtDato.Focus();
                                 throw new Exception("Cuit incorrecto");
+                            }
+                            if (Logica_Funciones_Generales.cuit_existente(tipo,cliente_datos.id_cliente,txtDato.Text) == false)
+                            {
+                                txtDato.Text = "";
+                                txtDato.Focus();
+                                throw new Exception("Cuit ingresado ya existe en otro cliente activo");
                             }
                         }
                     }

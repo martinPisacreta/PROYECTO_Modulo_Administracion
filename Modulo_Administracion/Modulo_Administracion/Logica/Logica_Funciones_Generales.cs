@@ -103,6 +103,55 @@ namespace Modulo_Administracion.Logica
 
         }
 
+        public static bool cuit_existente(int tipo,int id, string cuit)
+        {
+            Modulo_AdministracionContext db = new Modulo_AdministracionContext();
+            try
+            {
+                int cantidad = 0;
+                if(tipo == 1)
+                {
+                    //verifico la cantidad de proveedores activos con el cuit que viene por parametro 
+                    cantidad = (from pd in db.proveedor_datos
+                                join p in db.proveedor on pd.id_proveedor equals p.id_proveedor
+                                where pd.txt_dato_proveedor == cuit && pd.id_proveedor != id
+                                select new
+                                {
+                                    pd.id_proveedor
+                                }).Count();
+                }
+                else if (tipo == 2)
+                { 
+                    //verifico la cantidad de clientes activos con el cuit que viene por parametro 
+                    cantidad = (from cl in db.cliente_datos
+                                    join c in db.cliente on cl.id_cliente equals c.id_cliente
+                                    where cl.txt_dato_cliente == cuit && cl.id_cliente != id
+                                    select new
+                                    {
+                                        cl.id_cliente
+                                    }).Count();
+                }
+            
+                if(cantidad == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                db = null;
+            }
+        }
+
         public static string crear_path_a_partir_de_factura(factura factura)
         {
             string rutaFull_FilePath = "";
