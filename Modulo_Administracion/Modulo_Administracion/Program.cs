@@ -47,8 +47,8 @@ namespace Modulo_Administracion
             config.ConnectionStrings.ConnectionStrings.Remove("LocalSqlServer");
             if (namePc.Contains("I7NMOJE"))
             {
-                config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("Modulo_AdministracionContext", "data source=DESKTOP-I7NMOJE;initial catalog=CarritoCompras;user id=sa;password=123456;MultipleActiveResultSets=True;App=EntityFramework", "System.Data.SqlClient"));
-                config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("Modulo_Administracion.Properties.Settings.reporteFacturaConnectionString", "Data Source=DESKTOP-I7NMOJE;Initial Catalog=CarritoCompras;Integrated Security=True", "System.Data.SqlClient"));
+                config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("Modulo_AdministracionContext", @"data source=DESKTOP-I7NMOJE\SQLEXPRESS;initial catalog=CarritoCompras;user id=sa;password=123456;MultipleActiveResultSets=True;App=EntityFramework", "System.Data.SqlClient"));
+                config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("Modulo_Administracion.Properties.Settings.reporteFacturaConnectionString", @"Data Source=DESKTOP-I7NMOJE\SQLEXPRESS;Initial Catalog=CarritoCompras;Integrated Security=True", "System.Data.SqlClient"));
 
 
                 ruta_guardar_factura_pdf = @"C:\Users\Martin\Desktop\";
