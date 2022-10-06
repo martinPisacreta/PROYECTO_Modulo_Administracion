@@ -226,6 +226,12 @@ namespace Modulo_Administracion
                         //elimino los espacios en blanco de mas por uno solo espacio en blanco
                         row["descripcion_articulo"] = Regex.Replace(descripcion_articulo, @"\s+", " ");
                         row["codigo_articulo"] = Regex.Replace(codigo_articulo, @"\s+", " ");
+
+                       
+                        if(row["descripcion_articulo"].ToString().Length >= 400)
+                        {
+                            row["descripcion_articulo"] = row["descripcion_articulo"].ToString().Substring(0, 380);
+                        }
                     }
 
                     //agrego la columna de id_proveedor

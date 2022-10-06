@@ -1,4 +1,7 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Modulo_Administracion.Clases
 {
@@ -42,7 +45,7 @@ namespace Modulo_Administracion.Clases
         public virtual DbSet<vendedor> vendedor { get; set; }
         public virtual DbSet<articulo_historico> articulo_historico { get; set; }
         public virtual DbSet<articulo_tmp_errores> articulo_tmp_errores { get; set; }
-        public virtual DbSet<log_tarea_programada> log_tarea_programada { get; set; }
+        public virtual DbSet<v_cliente_cuenta_corriente> v_cliente_cuenta_corriente { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -448,6 +451,22 @@ namespace Modulo_Administracion.Clases
             modelBuilder.Entity<articulo_historico>()
                 .Property(e => e.precio_lista)
                 .HasPrecision(18, 4);
+
+            modelBuilder.Entity<v_cliente_cuenta_corriente>()
+                .Property(e => e.Tipo_Factura)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<v_cliente_cuenta_corriente>()
+                .Property(e => e.Saldo)
+                .HasPrecision(22, 2);
+
+            modelBuilder.Entity<v_cliente_cuenta_corriente>()
+                .Property(e => e.S_Acum)
+                .HasPrecision(2, 2);
+
+            modelBuilder.Entity<v_cliente_cuenta_corriente>()
+                .Property(e => e.Cuit)
+                .IsUnicode(false);
         }
     }
 }

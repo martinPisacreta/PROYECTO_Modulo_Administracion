@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Modulo_Administracion.Vista
@@ -90,6 +91,10 @@ namespace Modulo_Administracion.Vista
 
                 frm_Espere.Show();
 
+                if (!Directory.Exists(Program.ruta_guardar_reporte_cliente_cuenta_corriente))
+                {
+                    Directory.CreateDirectory(Program.ruta_guardar_reporte_cliente_cuenta_corriente);
+                }
 
                 string path = Program.ruta_guardar_reporte_cliente_cuenta_corriente +  cliente.nombre_fantasia + DateTime.Now.ToString("yyyyMMdd") + ".pdf";
 
@@ -780,6 +785,8 @@ namespace Modulo_Administracion.Vista
                 dgvClienteCuentaCorriente.Columns["Id"].Visible = false;
                 dgvClienteCuentaCorriente.Columns["Id_factura"].Visible = false;
                 dgvClienteCuentaCorriente.Columns["Cliente_Nombre_Fantasia"].Visible = false;
+                dgvClienteCuentaCorriente.Columns["Id_Cliente"].Visible = false;
+                dgvClienteCuentaCorriente.Columns["Cuit"].Visible = false;
 
                 dgvClienteCuentaCorriente.Columns["Saldo"].ReadOnly = true;
                 dgvClienteCuentaCorriente.Columns["S_Acum"].ReadOnly = true;

@@ -78,6 +78,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Pkcs, Version=6.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Pkcs.6.0.1\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
@@ -108,7 +109,6 @@
     <Compile Include="Clases\factura_detalle_log.cs" />
     <Compile Include="Clases\factura_log.cs" />
     <Compile Include="Clases\familia.cs" />
-    <Compile Include="Clases\log_tarea_programada.cs" />
     <Compile Include="Clases\marca.cs" />
     <Compile Include="Clases\Modulo_AdministracionContext.cs" />
     <Compile Include="Clases\proveedor.cs" />
@@ -130,6 +130,7 @@
     <Compile Include="Clases\usuario_pedido.cs" />
     <Compile Include="Clases\usuario_pedido_detalle.cs" />
     <Compile Include="Clases\vendedor.cs" />
+    <Compile Include="Clases\v_cliente_cuenta_corriente.cs" />
     <Compile Include="Logica\Logica_Afip\AFIP_ELECTRONICA.cs" />
     <Compile Include="Logica\Logica_Afip\CBD.cs" />
     <Compile Include="Logica\Logica_Afip\CGLOBAL.cs" />
