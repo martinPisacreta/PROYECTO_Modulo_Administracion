@@ -1156,7 +1156,7 @@
             this.col_cantidad.MinimumWidth = 6;
             this.col_cantidad.Name = "col_cantidad";
             this.col_cantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_cantidad.Width = 55;
+            this.col_cantidad.Width = 70;
             // 
             // col_marca
             // 
@@ -1164,7 +1164,7 @@
             this.col_marca.MinimumWidth = 6;
             this.col_marca.Name = "col_marca";
             this.col_marca.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_marca.Width = 180;
+            this.col_marca.Width = 150;
             // 
             // col_codigo
             // 
@@ -1172,7 +1172,7 @@
             this.col_codigo.MinimumWidth = 6;
             this.col_codigo.Name = "col_codigo";
             this.col_codigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_codigo.Width = 179;
+            this.col_codigo.Width = 150;
             // 
             // col_descripcion
             // 
@@ -1180,7 +1180,7 @@
             this.col_descripcion.MinimumWidth = 6;
             this.col_descripcion.Name = "col_descripcion";
             this.col_descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_descripcion.Width = 305;
+            this.col_descripcion.Width = 300;
             // 
             // col_precio
             // 
@@ -1188,7 +1188,6 @@
             this.col_precio.MinimumWidth = 6;
             this.col_precio.Name = "col_precio";
             this.col_precio.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_precio.Width = 170;
             // 
             // col_importe
             // 
@@ -1196,7 +1195,6 @@
             this.col_importe.MinimumWidth = 6;
             this.col_importe.Name = "col_importe";
             this.col_importe.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_importe.Width = 170;
             // 
             // col_precio_lista_x_coeficiente
             // 
@@ -1204,7 +1202,7 @@
             this.col_precio_lista_x_coeficiente.MinimumWidth = 6;
             this.col_precio_lista_x_coeficiente.Name = "col_precio_lista_x_coeficiente";
             this.col_precio_lista_x_coeficiente.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.col_precio_lista_x_coeficiente.Width = 179;
+            this.col_precio_lista_x_coeficiente.Width = 150;
             // 
             // col_iva_aumento
             // 
@@ -1212,7 +1210,7 @@
             this.col_iva_aumento.MinimumWidth = 6;
             this.col_iva_aumento.Name = "col_iva_aumento";
             this.col_iva_aumento.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.col_iva_aumento.Width = 180;
+            this.col_iva_aumento.Width = 120;
             // 
             // col_id_articulo
             // 
@@ -1221,7 +1219,7 @@
             this.col_id_articulo.Name = "col_id_articulo";
             this.col_id_articulo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.col_id_articulo.Visible = false;
-            this.col_id_articulo.Width = 125;
+            this.col_id_articulo.Width = 120;
             // 
             // col_id_factura_detalle
             // 
@@ -1230,7 +1228,7 @@
             this.col_id_factura_detalle.Name = "col_id_factura_detalle";
             this.col_id_factura_detalle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.col_id_factura_detalle.Visible = false;
-            this.col_id_factura_detalle.Width = 125;
+            this.col_id_factura_detalle.Width = 120;
             // 
             // frmFacturaAFIP
             // 

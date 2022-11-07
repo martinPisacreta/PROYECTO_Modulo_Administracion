@@ -372,7 +372,7 @@ namespace Modulo_Administracion.Logica
             try
             {
 
-                familia familia = db.familia.FirstOrDefault(f => f.txt_desc_familia.Contains(txt_desc_familia) &&
+                familia familia = db.familia.FirstOrDefault(f => f.txt_desc_familia == txt_desc_familia &&
                                                                  f.sn_activo == -1 &&
                                                                  f.id_tabla_familia != id_tabla_familia);
 
