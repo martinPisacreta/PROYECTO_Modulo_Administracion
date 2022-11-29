@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvFacturas = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panelBusqueda2 = new System.Windows.Forms.Panel();
             this.btnCancelarFiltro = new System.Windows.Forms.Button();
@@ -66,6 +57,15 @@
             this.txtNroCopias = new System.Windows.Forms.TextBox();
             this.btnEliminarFactura = new System.Windows.Forms.Button();
             this.popupMenu = new System.Windows.Forms.ComboBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFacturas)).BeginInit();
             this.panelBusqueda2.SuspendLayout();
             this.SuspendLayout();
@@ -74,6 +74,7 @@
             // 
             this.dgvFacturas.AllowUserToAddRows = false;
             this.dgvFacturas.AllowUserToDeleteRows = false;
+            this.dgvFacturas.AllowUserToOrderColumns = true;
             this.dgvFacturas.AllowUserToResizeRows = false;
             this.dgvFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -95,79 +96,6 @@
             this.dgvFacturas.Size = new System.Drawing.Size(1180, 304);
             this.dgvFacturas.TabIndex = 11;
             this.dgvFacturas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFacturas_CellDoubleClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Id Factura";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Tipo Factura";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nro Factura";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Fecha";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 125;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Cliente";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Importe";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 125;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Observación";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 125;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Emitida";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 125;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Id Tipo Factura";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
-            this.Column8.Width = 125;
             // 
             // btnSalir
             // 
@@ -488,6 +416,79 @@
             this.popupMenu.TabIndex = 128;
             this.popupMenu.SelectedIndexChanged += new System.EventHandler(this.popupMenu_SelectedIndexChanged);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id Factura";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Tipo Factura";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nro Factura";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Fecha";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 125;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Cliente";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Importe";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 125;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Observación";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 125;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Emitida";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 125;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Id Tipo Factura";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            this.Column8.Width = 125;
+            // 
             // frmFacturaGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -541,15 +542,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTipoFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtClienteId;
         private System.Windows.Forms.TextBox txtCliente;
@@ -560,5 +552,14 @@
         private System.Windows.Forms.TextBox txtNroCopias;
         private System.Windows.Forms.Button btnEliminarFactura;
         private System.Windows.Forms.ComboBox popupMenu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
 }

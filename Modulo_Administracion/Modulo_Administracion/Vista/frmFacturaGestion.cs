@@ -92,6 +92,8 @@ namespace Modulo_Administracion.Vista
             {
                 InitializeComponent();
 
+                dgvFacturas.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+
                 Logica_Tipo_Factura.loadComboBox_cbTipoFactura_relacionado_a_FACTURA(cbTipoFactura);
 
 
@@ -284,7 +286,7 @@ namespace Modulo_Administracion.Vista
                     dgvFacturas.Rows[indice].Cells[0].Value = factura.id_factura;
                     dgvFacturas.Rows[indice].Cells[1].Value = factura.ttipo_factura.txt_desc;
                     dgvFacturas.Rows[indice].Cells[2].Value = factura.ttipo_factura.letra + " " + factura.nro_factura.ToString();
-                    dgvFacturas.Rows[indice].Cells[3].Value = factura.fecha.ToString("dd/MM/yyyy");
+                    dgvFacturas.Rows[indice].Cells[3].Value = factura.fecha;
                     dgvFacturas.Rows[indice].Cells[4].Value = factura.cliente.nombre_fantasia;
                     if (factura.ttipo_factura.cod_tipo_factura == ttipo_factura_constantes.i_valor_nota_credito || factura.ttipo_factura.cod_tipo_factura == ttipo_factura_constantes.i_valor_nota_debito) //si es nota de credito o debito
                     {
